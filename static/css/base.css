@@ -1,12 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Prompt&display=swap');
 
-@font-face {
-    font-family: 'LoversInFebruary';
-    src: url('/static/fonts/LoversInFebruary.woff') format('woff'),
-        url('/static/fonts/LoversInFebruary.ttf') format('truetype');
-    font-display: swap;
-}
-
 html {
     height: 100vh;
 }
@@ -26,14 +19,8 @@ body {
     width: 1.5rem;
 }
 
-.logo-font {
-    font-family: 'LoversInFebruary', sans-serif;
-    font-size: 3rem;
-    color: blueviolet;
-}
-
-.main-logo-link {
-    width: fit-content;
+#top-nav-logo {
+    width: 150px;
 }
 
 .shop-now-button {
