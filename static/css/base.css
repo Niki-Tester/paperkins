@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Prompt&display=swap');
+
+@font-face {
+    font-family: 'LoversInFebruary';
+    src: url('/static/fonts/LoversInFebruary.woff') format('woff'),
+        url('/static/fonts/LoversInFebruary.ttf') format('truetype');
+    font-display: swap;
+}
+
+html {
+    height: 100vh;
+}
+
+body {
+    background: url('/media/katie-rainbow-DjGHuzUh_84-unsplash.webp') no-repeat center center fixed;
+    background-size: cover;
+    height: calc(100vh - 164px);
+    font-family: 'Prompt', sans-serif;
+}
+
+.icon {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+.logo-font {
+    font-family: 'LoversInFebruary', sans-serif;
+    font-size: 3rem;
+    color: blueviolet;
+}
+
+.main-logo-link {
+    width: fit-content;
+}
+
+.shop-now-button {
+    min-width: 180px;
+}
+
+.text-shadow-sm {
+    text-shadow: rgba(0, 0, 0, 0.2) 2px 2px 1px;
+}
+
+.text-shadow {
+    text-shadow: rgba(0, 0, 0, 0.6) 2px 2px 2px;
+}
+
+/* ------------- Media Queries */
+
+/* Larger container on xl screens */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 80%;
+    }
+}
+
+/* Fix top navbar only on medium and up screens */
+@media (min-width: 992px) {
+    .fixed-top-desktop-only {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 1030;
+    }
+
+    .header-container {
+        padding-top: 85px;
+    }
+}
