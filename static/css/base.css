@@ -23,6 +23,14 @@ body {
     width: 150px;
 }
 
+#page-logo {
+    background-color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 1rem;
+    padding: 1.5rem;
+    width: 300px;
+    border-radius: 10px
+}
+
 .shop-now-button {
     min-width: 180px;
 }
