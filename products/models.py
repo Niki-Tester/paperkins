@@ -29,6 +29,7 @@ class Product(models.Model):
     stock_qty = models.IntegerField(default=0)
     has_custom_message = models.BooleanField(
         default=False, null=True, blank=True)
+    active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.name
