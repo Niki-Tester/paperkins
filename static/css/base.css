@@ -43,6 +43,16 @@ body {
     text-shadow: rgba(0, 0, 0, 0.6) 2px 2px 2px;
 }
 
+.overlay {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background: rgba(225, 225, 225, 0.8);
+    z-index: -1;
+}
+
 /* ------------- Media Queries */
 
 /* Larger container on xl screens */
@@ -54,7 +64,7 @@ body {
 
 /* Fix top navbar only on medium and up screens */
 @media (min-width: 992px) {
-    .fixed-top-desktop-only {
+    .fixed-top {
         position: fixed;
         top: 0;
         right: 0;
@@ -63,6 +73,6 @@ body {
     }
 
     .header-container {
-        padding-top: 85px;
+        padding-top: 175px;
     }
 }
