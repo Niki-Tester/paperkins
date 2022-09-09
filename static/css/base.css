@@ -7,7 +7,7 @@ html {
 body {
     background: url('/media/katie-rainbow-DjGHuzUh_84-unsplash.webp') no-repeat center center fixed;
     background-size: cover;
-    height: calc(100vh - 164px);
+    height: calc(100vh - 148px);
     font-family: 'Prompt', sans-serif;
 }
 
@@ -73,6 +73,6 @@ body {
     }
 
     .header-container {
-        padding-top: 175px;
+        padding-top: 148px;
     }
 }
