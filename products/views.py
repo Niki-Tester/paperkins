@@ -4,8 +4,7 @@ from .models import Product
 
 def all_products(request):
     """ A view to show all products"""
-    products = Product.objects.all()
-
+    products = Product.objects.filter(active=True)
     context = {
         'products': products
     }
