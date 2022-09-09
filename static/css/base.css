@@ -11,6 +11,10 @@ body {
     font-family: 'Prompt', sans-serif;
 }
 
+.header-container {
+    padding-top: 96px;
+}
+
 .icon {
     align-items: center;
     display: inline-flex;
