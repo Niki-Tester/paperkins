@@ -27,8 +27,7 @@ class Product(models.Model):
     image_url = models.URLField(max_length=1024, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
     stock_qty = models.IntegerField(default=0)
-    has_custom_message = models.BooleanField(
-        default=False, null=True, blank=True)
+    has_custom_message = models.BooleanField(default=False)
     active = models.BooleanField(default=True)
 
     def __str__(self):
