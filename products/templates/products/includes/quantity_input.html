@@ -1,12 +1,16 @@
 <script type="text/javascript">
 
-    // Disable +/- buttons outside 1-99 range
+    // Disable +/- buttons and submit button
+    // outside available stock range
     function handleEnableDisable(itemId) {
         const currentValue = parseInt($(`#id_qty_${itemId}`).val());
+        const maxAvailable = parseInt($('#stock-qty').val())
         const minusDisabled = currentValue < 2;
-        const plusDisabled = currentValue > 98;
+        const plusDisabled = currentValue >= maxAvailable;
+        const addToBagDisabled = currentValue > maxAvailable;
         $(`#decrement-qty_${itemId}`).prop('disabled', minusDisabled);
         $(`#increment-qty_${itemId}`).prop('disabled', plusDisabled);
+        $(`#addToBagButton`).prop('disabled', addToBagDisabled);
     }
 
     // Ensure proper enabling/disabling of all inputs on page load

@@ -57,6 +57,13 @@ body {
     z-index: -1;
 }
 
+.btn:disabled,
+.btn[disabled] {
+    cursor: not-allowed !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
 /* ------------- Media Queries */
 
 /* Larger container on xl screens */
