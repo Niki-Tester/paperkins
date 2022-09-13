@@ -1,4 +1,7 @@
 from django.db import models
+from django.dispatch import receiver
+from django.db.models.signals import post_delete
+import os
 
 
 class Category(models.Model):
@@ -32,3 +35,15 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+
+def _delete_file(path):
+    """ Deletes file from filesystem. """
+    if os.path.isfile(path):
+        os.remove(path)
+
+
+@receiver(post_delete, sender=Product)
+def _post_delete_receiver(sender, instance, **kwargs):
+    if instance.image:
+        _delete_file(instance.image.path)
