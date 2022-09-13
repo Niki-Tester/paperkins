@@ -1,7 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.db.models import Q
-from .models import Product, Category
 from django.db.models.functions import Lower
+from django.contrib.auth.decorators import login_required
+from .models import Product, Category
+from .forms import ProductForm
 
 
 def all_products(request):
@@ -63,3 +65,23 @@ def product_details(request, product_id):
     }
 
     return render(request, 'products/product_details.html', context)
+
+
+@login_required
+def add_product(request):
+    if not request.user.is_superuser:
+        return redirect(reverse('home'))
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            product = form.save()
+            return redirect(reverse('product_details', args=[product.id]))
+    else:
+        form = ProductForm()
+
+    template = 'products/add_product.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
