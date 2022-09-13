@@ -92,3 +92,16 @@ def add_product(request):
     }
 
     return render(request, template, context)
+
+
+@login_required
+def delete_product(request, product_id):
+    if not request.user.is_superuser:
+        messages.error(
+            request, 'You are not authorized to remove products as this user.')
+        return redirect(reverse('products'))
+
+    product = get_object_or_404(Product, pk=product_id)
+    product.delete()
+    messages.success(request, f'Successfully deleted: {product.name}')
+    return redirect(reverse('products'))
