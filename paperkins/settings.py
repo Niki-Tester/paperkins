@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     # Custom Apps
     'home',
     'products',
+    'cart',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap'
