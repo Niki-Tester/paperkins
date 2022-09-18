@@ -52,6 +52,10 @@ a.category-badge>span.badge:hover {
     text-shadow: rgba(0, 0, 0, 0.6) 2px 2px 2px;
 }
 
+.pre-wrap {
+    white-space: pre-wrap;
+}
+
 .overlay {
     height: 100%;
     width: 100%;
