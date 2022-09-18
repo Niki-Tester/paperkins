@@ -105,3 +105,40 @@ def delete_product(request, product_id):
     product.delete()
     messages.success(request, f'Successfully deleted: {product.name}')
     return redirect(reverse('products'))
+
+
+@login_required
+def update_product(request, product_id):
+    """ A view to update an existing product """
+
+    if not request.user.is_superuser:
+        messages.error(
+            request, 'You are not authorized to update products as this user.')
+        return redirect(reverse('products'))
+
+    product = get_object_or_404(Product, pk=product_id)
+
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            form.save()
+            messages.success(request, f'Successfully updated {product.name}!')
+            return redirect(reverse('product_details', args=[product.id]))
+        else:
+            messages.error(
+                request,
+                'Failed to update product. Please ensure the form is valid')
+            if form.errors:
+                messages.error(request, form.errors.as_text())
+    else:
+
+        form = ProductForm(instance=product)
+        messages.info(request, f'You are updating {product.name}')
+
+    template = 'products/update_product.html'
+    context = {
+        'form': form,
+        'product': product,
+    }
+
+    return render(request, template, context)

@@ -49,7 +49,7 @@
                     <!-- Product Admin -->
                     {% if request.user.is_superuser %}
                         <small class="ml-3">
-                            <a href="" class="btn btn-info btn-sm rounded-0">Edit</a>
+                            <a href="{% url 'update_product' product.id  %}" class="btn btn-info btn-sm rounded-0">Edit</a>
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-danger btn-sm rounded-0" data-toggle="modal" data-target="#delete-confirmation">
                                 Delete
