@@ -11,12 +11,24 @@ def add_to_cart(request, item_id):
 
     quantity = int(request.POST.get('quantity'))
     redirect_url = request.POST.get('redirect_url')
+    custom_message = None
+    if 'custom_message' in request.POST:
+        custom_message = request.POST.get('custom_message')
     cart = request.session.get('cart', {})
 
-    if item_id in list(cart.keys()):
-        cart[item_id] += quantity
+    if custom_message or custom_message == '':
+        if item_id in list(cart.keys()):
+            if custom_message in cart[item_id]['items_by_message'].keys():
+                cart[item_id]['items_by_message'][custom_message] += quantity
+            else:
+                cart[item_id]['items_by_message'][custom_message] = quantity
+        else:
+            cart[item_id] = {'items_by_message': {custom_message: quantity}}
     else:
-        cart[item_id] = quantity
+        if item_id in list(cart.keys()):
+            cart[item_id] += quantity
+        else:
+            cart[item_id] = quantity
 
     request.session['cart'] = cart
     return redirect(redirect_url)
