@@ -1,16 +1,38 @@
 <script type="text/javascript">
-
     // Disable +/- buttons and submit button
     // outside available stock range
     function handleEnableDisable(itemId) {
         const currentValue = parseInt($(`#id_qty_${itemId}`).val());
         const maxAvailable = parseInt($('#stock-qty').val())
-        const minusDisabled = currentValue < 2;
-        const plusDisabled = currentValue >= maxAvailable;
+        const minusDisabled = currentValue < parseInt($(`#id_qty_${itemId}`)[0].min) + 1;
+        const plusDisabled = currentValue >= parseInt($(`#id_qty_${itemId}`)[0].max);
         const addToBagDisabled = currentValue > maxAvailable;
         $(`#decrement-qty_${itemId}`).prop('disabled', minusDisabled);
         $(`#increment-qty_${itemId}`).prop('disabled', plusDisabled);
         $(`#addToBagButton`).prop('disabled', addToBagDisabled);
+    }
+
+    // Display info message if quantity input value is equal to stock_qty value
+    // or error message if quantity input value greater than stock_qty value
+    function handleQuantityMessage(itemId){
+        const currentValue = parseInt($(`#id_qty_${itemId}`).val());
+        const maxAvailable = parseInt($('#stock-qty').val())
+
+        if (currentValue == maxAvailable){
+            $('#quantity_message').text(`Maximum Order Quantity`)
+            $('#quantity_message').addClass('text-info')
+            $('#quantity_message').removeClass('text-danger')
+
+        }else if(currentValue > maxAvailable){{
+            $('#quantity_message').text(`Order Quantity Exceeds Stock Available`)
+            $('#quantity_message').addClass('text-danger')
+            $('#quantity_message').removeClass('text-info')
+        }
+        } else {
+            $('#quantity_message').text('')
+            $('#quantity_message').removeClass('text-info')
+            $('#quantity_message').removeClass('text-danger')
+        }
     }
 
     // Ensure proper enabling/disabling of all inputs on page load
@@ -18,12 +40,14 @@
     for(let i = 0; i < allQtyInputs.length; i++){
         const itemId = $(allQtyInputs[i]).data('item_id');
         handleEnableDisable(itemId);
+        handleQuantityMessage(itemId)
     }
 
     // Check enable/disable every time the input is changed
     $('.qty_input').change(function() {
         const itemId = $(this).data('item_id');
         handleEnableDisable(itemId);
+        handleQuantityMessage(itemId)
     });
 
     // Increment quantity
@@ -34,6 +58,7 @@
        $(closestInput).val(currentValue + 1);
        const itemId = $(this).data('item-id');
        handleEnableDisable(itemId);
+       handleQuantityMessage(itemId)
     });
 
     // Decrement quantity
@@ -44,5 +69,6 @@
        $(closestInput).val(currentValue - 1);
        const itemId = $(this).data('item-id');
        handleEnableDisable(itemId);
+       handleQuantityMessage(itemId)
     });
 </script>

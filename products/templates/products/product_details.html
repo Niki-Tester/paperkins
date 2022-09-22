@@ -86,7 +86,7 @@
                                         </div>
                                         <!-- Product Quantity  -->
                                         <input class="form-control qty_input" type="number"
-                                            name="quantity" value="1" min="1" max="99"
+                                            name="quantity" value="1" min="1" max="{{product.stock_qty}}"
                                                 data-item_id="{{ product.id }}" id="id_qty_{{ product.id }}">
                                         <!-- Product Quantity Increment -->
                                         <div class="input-group-append">
@@ -99,6 +99,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                <p id="quantity_message"></p>
                             </div>
                             <!-- Custom Message -->
                             {% if product.has_custom_message %}
