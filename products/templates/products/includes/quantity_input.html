@@ -19,19 +19,19 @@
         const maxAvailable = parseInt($('#stock-qty').val())
 
         if (currentValue == maxAvailable){
-            $('#quantity_message').text(`Maximum Order Quantity`)
-            $('#quantity_message').addClass('text-info')
-            $('#quantity_message').removeClass('text-danger')
+            $(`#quantity_message_${itemId}`).text(`Maximum Order Quantity`)
+            $(`#quantity_message_${itemId}`).addClass('text-info')
+            $(`#quantity_message_${itemId}`).removeClass('text-danger')
 
         }else if(currentValue > maxAvailable){{
-            $('#quantity_message').text(`Order Quantity Exceeds Stock Available`)
-            $('#quantity_message').addClass('text-danger')
-            $('#quantity_message').removeClass('text-info')
+            $(`#quantity_message_${itemId}`).text(`Order Quantity Exceeds Stock Available`)
+            $(`#quantity_message_${itemId}`).addClass('text-danger')
+            $(`#quantity_message_${itemId}`).removeClass('text-info')
         }
         } else {
-            $('#quantity_message').text('')
-            $('#quantity_message').removeClass('text-info')
-            $('#quantity_message').removeClass('text-danger')
+            $(`#quantity_message_${itemId}`).text('')
+            $(`#quantity_message_${itemId}`).removeClass('text-info')
+            $(`#quantity_message_${itemId}`).removeClass('text-danger')
         }
     }
 
