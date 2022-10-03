@@ -1,4 +1,10 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import (render,
+                              redirect,
+                              reverse,
+                              HttpResponse,
+                              get_object_or_404)
+from django.contrib import messages
+from products.models import Product
 
 
 def view_cart(request):
@@ -9,6 +15,7 @@ def view_cart(request):
 def add_to_cart(request, item_id):
     """ Add product to shopping cart """
 
+    product = get_object_or_404(Product, pk=item_id)
     quantity = int(request.POST.get('quantity'))
     redirect_url = request.POST.get('redirect_url')
     custom_message = None
@@ -30,6 +37,9 @@ def add_to_cart(request, item_id):
         else:
             cart[item_id] = quantity
 
+    CART_NOTIFICATION = 26
+    messages.add_message(request, CART_NOTIFICATION,
+                         f'{product.name} successfully added to cart')
     request.session['cart'] = cart
     return redirect(redirect_url)
 
@@ -37,6 +47,7 @@ def add_to_cart(request, item_id):
 def update_cart_item(request, item_id):
     """ Update item quantity in shopping cart """
 
+    product = get_object_or_404(Product, pk=item_id)
     quantity = int(request.POST.get('quantity'))
     custom_message = None
     if 'custom_message' in request.POST:
@@ -46,13 +57,21 @@ def update_cart_item(request, item_id):
     if custom_message or custom_message == '':
         if quantity > 0:
             cart[item_id]['items_by_message'][custom_message] = quantity
+            messages.success(
+                request, f'{product.name} quantity changed to {quantity}')
         else:
             del cart[item_id]['items_by_message'][custom_message]
+            messages.success(
+                request, f'{product.name} removed from cart')
     else:
         if quantity > 0:
             cart[item_id] = quantity
+            messages.success(
+                request, f'{product.name} quantity changed to {quantity}')
         else:
-            cart.pop[item_id]
+            del cart[item_id]
+            messages.success(
+                request, f'{product.name} removed from cart')
 
     request.session['cart'] = cart
     return redirect(reverse('view_cart'))
@@ -60,20 +79,30 @@ def update_cart_item(request, item_id):
 
 def remove_cart_item(request, item_id):
     """ Remove item from shopping cart"""
-    custom_message = None
-    if 'custom_message' in request.POST:
-        if request.POST.get('custom_message') == '':
-            custom_message = None
+
+    try:
+        product = get_object_or_404(Product, pk=item_id)
+        custom_message = None
+        if 'custom_message' in request.POST:
+            if request.POST.get('custom_message') == '':
+                custom_message = None
+            else:
+                custom_message = request.POST.get('custom_message')
+
+        cart = request.session.get('cart', {})
+
+        if custom_message:
+            del cart[item_id]['items_by_message'][custom_message]
         else:
-            custom_message = request.POST.get('custom_message')
-            print(f'Custom Message: {custom_message}')
+            del cart[item_id]
 
-    cart = request.session.get('cart', {})
+        messages.success(
+            request, f'{product.name} removed from cart')
 
-    if custom_message:
-        del cart[item_id]['items_by_message'][custom_message]
-    else:
-        del cart[item_id]
+        request.session['cart'] = cart
+        return HttpResponse(status=200)
 
-    request.session['cart'] = cart
-    return redirect(reverse('view_cart'))
+    except Exception as e:
+        messages.error(
+            request, f'Failed to remove {product.name} from cart. Error: {e}')
+        return HttpResponse(500)
