@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'checkout',
 ]
 
-CRISPY_TEMPLATE_PACK = 'bootstrap'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 SITE_ID = 1
 
@@ -94,6 +94,10 @@ TEMPLATES = [
                 'django.template.context_processors.media',
                 'cart.contexts.cart_content',
             ],
+            'builtins': [
+                'crispy_forms.templatetags.crispy_forms_tags',
+                'crispy_forms.templatetags.crispy_forms_field',
+            ]
         },
     },
 ]
