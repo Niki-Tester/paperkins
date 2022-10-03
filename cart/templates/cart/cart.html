@@ -39,7 +39,7 @@
                                         {# Product Info #}
                                         <td class="p-3 w-25"><img class="img-fluid rounded-0" src="{% if item.product.image %}{{ item.product.image.url }}{% else %}{{ MEDIA_URL }}no-image.webp{% endif %}" alt="{{ product.name }}" alt=""></td>
                                         <td class="py-3">
-                                            <p class="my-0"><strong>{{ item.product.name }}</strong></p>
+                                            <p class="my-0"><strong>{{ item.product.name|title }}</strong></p>
                                             {% if item.custom_message %}
                                                 <p class="text-muted">Custom Message: {{ item.custom_message }}</p>
                                             {% endif %}

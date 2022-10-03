@@ -63,7 +63,7 @@
                                     <img src="{% if product.image %}{{ product.image.url }}{% else %}{{ MEDIA_URL }}no-image.webp{% endif %}" alt="{{ product.name }}" class="card-img-top img-fluid">
                                 </a>
                                 <div class="card-body pb-1 col-12">
-                                    <p class="mb-0">{{ product.name }}</p>
+                                    <p class="mb-0 logo-font">{{ product.name|title }}</p>
                                     {% if product.category %}
                                         <p class="small mt-1 mb-0">
                                             <a class="text-muted" href="{% url 'products' %}?category={{ product.category.name }}">
