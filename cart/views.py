@@ -69,8 +69,6 @@ def remove_cart_item(request, item_id):
             print(f'Custom Message: {custom_message}')
 
     cart = request.session.get('cart', {})
-    print(request.POST)
-    print(cart)
 
     if custom_message:
         del cart[item_id]['items_by_message'][custom_message]
