@@ -1,6 +1,6 @@
 from django.db import models
 from django.dispatch import receiver
-from django.db.models.signals import post_delete
+from django.db.models.signals import post_delete, post_init, post_save
 import os
 
 
@@ -47,3 +47,16 @@ def _delete_file(path):
 def _post_delete_receiver(sender, instance, **kwargs):
     if instance.image:
         _delete_file(instance.image.path)
+
+
+@receiver(post_init, sender=Product)
+def backup_image_path(sender, instance, **kwargs):
+    if instance.image:
+        instance._current_image_file = instance.image
+
+
+@receiver(post_save, sender=Product)
+def delete_old_image(sender, instance, **kwargs):
+    if hasattr(instance, '_current_image_file'):
+        if instance._current_image_file != instance.image:
+            instance._current_image_file.delete(save=False)
