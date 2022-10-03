@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 
 
 def view_cart(request):
@@ -32,3 +32,50 @@ def add_to_cart(request, item_id):
 
     request.session['cart'] = cart
     return redirect(redirect_url)
+
+
+def update_cart_item(request, item_id):
+    """ Update item quantity in shopping cart """
+
+    quantity = int(request.POST.get('quantity'))
+    custom_message = None
+    if 'custom_message' in request.POST:
+        custom_message = request.POST.get('custom_message')
+    cart = request.session.get('cart', {})
+
+    if custom_message or custom_message == '':
+        if quantity > 0:
+            cart[item_id]['items_by_message'][custom_message] = quantity
+        else:
+            del cart[item_id]['items_by_message'][custom_message]
+    else:
+        if quantity > 0:
+            cart[item_id] = quantity
+        else:
+            cart.pop[item_id]
+
+    request.session['cart'] = cart
+    return redirect(reverse('view_cart'))
+
+
+def remove_cart_item(request, item_id):
+    """ Remove item from shopping cart"""
+    custom_message = None
+    if 'custom_message' in request.POST:
+        if request.POST.get('custom_message') == '':
+            custom_message = None
+        else:
+            custom_message = request.POST.get('custom_message')
+            print(f'Custom Message: {custom_message}')
+
+    cart = request.session.get('cart', {})
+    print(request.POST)
+    print(cart)
+
+    if custom_message:
+        del cart[item_id]['items_by_message'][custom_message]
+    else:
+        del cart[item_id]
+
+    request.session['cart'] = cart
+    return redirect(reverse('view_cart'))

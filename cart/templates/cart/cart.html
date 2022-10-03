@@ -47,7 +47,7 @@
                                         <td class="py-3"><p class="my-0">£{{ item.product.price }}</p></td>
                                         {# Qty #}
                                         <td class="py-3">
-                                            <form class="form" action="" method="POST">
+                                            <form class="form update-form" action="{% url 'update_cart_item' item.item_id %}" method="POST">
                                                 {% csrf_token %}
                                                 <div class="form-group">
                                                     <div class="input-group">
@@ -79,10 +79,10 @@
                                                     </div>
                                                 </div>
                                             </form>
-                                            <div>
-                                                <a href="" class=" update-link text-info small">Update</a>
-                                                <a href="" class="remove-link text-danger small float-right" id="remove_{{item.item_id}}" data-custom-message="{{item.custom_message}}">Remove</a>
-                                            </div>
+                                            {# Update Item Link #}
+                                            <a href="" class=" update-link text-info small">Update</a>
+                                            {# Remove Item Link #}
+                                            <a href="" class="remove-link text-danger small float-right" id="remove_{{item.item_id}}" {% if item.custom_message or item.custom_message == '' %}data-custom-message="{{item.custom_message}}{% endif %}">Remove</a>
                                             <div class="col">
                                                 <div class="row">
                                                     <p id="quantity_message_{{item.product.id}}"></p>
@@ -152,12 +152,19 @@
             const csrftoken = "{{ csrf_token }}"
             const itemId = $(e.currentTarget).attr('id').split('remove_')[1];
             const customMessage = $(e.currentTarget).data('customMessage');
-            const url = `/cart/remove${itemId}`
-            const data = {
-                'csrfmiddlewaretoken' : csrftoken,
-                'custom_message': customMessage
+            const url = `remove/${itemId}`
+            let data = {}
+            if (customMessage || customMessage == '') {
+                data = {
+                    'csrfmiddlewaretoken' : csrftoken,
+                    'custom_message': customMessage,
+                }
+            } else {
+                data = {
+                    'csrfmiddlewaretoken': csrftoken,
+                }
             }
-
+            
             $.post(url, data)
             .done(()=>{
                 location.reload()
