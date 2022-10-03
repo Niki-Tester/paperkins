@@ -68,8 +68,6 @@ a.category-badge>span.badge:hover {
 
 .qty_input {
     text-align: center;
-    max-width: 100px;
-    height: 39px;
 }
 
 .qty_input::-webkit-outer-spin-button,

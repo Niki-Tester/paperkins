@@ -35,6 +35,7 @@
                             <tbody>
                                 {% for item in cart_items %}
                                     <tr>
+                                        {# Product Info #}
                                         <td class="p-3 w-25"><img class="img-fluid rounded-0" src="{{ item.product.image.url }}" alt=""></td>
                                         <td class="py-3">
                                             <p class="my-0"><strong>{{ item.product.name }}</strong></p>
@@ -42,13 +43,15 @@
                                                 <p class="text-muted">Custom Message: {{ item.custom_message }}</p>
                                             {% endif %}
                                         </td>
+                                        {# Price #}
                                         <td class="py-3"><p class="my-0">£{{ item.product.price }}</p></td>
+                                        {# Qty #}
                                         <td class="py-3">
                                             <form class="form" action="" method="POST">
                                                 {% csrf_token %}
                                                 <div class="form-group">
                                                     <div class="input-group">
-                                                        <!-- Product Quantity Decrement -->
+                                                        {# Quantity Decrement #}
                                                         <div class="input-group-prepend">
                                                             <button class="decrement-qty btn btn-sm btn-dark rounded-0"
                                                                 data-item-id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
@@ -57,11 +60,11 @@
                                                                 </span>
                                                             </button>
                                                         </div>
-                                                        <!-- Product Quantity  -->
+                                                        {# Quantity #}
                                                         <input class="form-control form-control-sm qty_input" type="number"
                                                             name="quantity" value="{{item.quantity}}" min="1" max="{{item.product.stock_qty}}"
                                                                 data-item_id="{{ item.item_id }}" id="id_qty_{{ item.item_id }}">
-                                                        <!-- Product Quantity Increment -->
+                                                        {# Quantity Increment #}
                                                         <div class="input-group-append">
                                                             <button class="increment-qty btn btn-sm btn-dark rounded-0"
                                                                 data-item-id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}">
@@ -74,12 +77,22 @@
                                                             <input type="hidden" type="text" name="custom_message" value="{{item.custom_message}}">
                                                         {% endif %}
                                                     </div>
+                                                </div>
+                                            </form>
+                                            <div>
+                                                <a href="" class=" update-link text-info small">Update</a>
+                                                <a href="" class="remove-link text-danger small float-right" id="remove_{{item.item_id}}" data-custom-message="{{item.custom_message}}">Remove</a>
+                                            </div>
+                                            <div class="col">
+                                                <div class="row">
                                                     <p id="quantity_message_{{item.product.id}}"></p>
                                                 </div>
-
-                                            </form>
+                                            </div>
                                         </td>
-                                        <td class="py-3"><p class="my-0">£{{ item.total }}</p></td>
+                                        {# Subtotal #}
+                                        <td class="py-3">
+                                            <p class="my-0">£{{ item.total }}</p>
+                                        </td>
                                     </tr>
                                 {% endfor %}
                                     <tr>
@@ -125,4 +138,30 @@
 {% block postload_js %}
     {{ block.super }}
     {% include 'products/includes/quantity_input.html' %}
+    <script type="text/javascript">
+        // Update Quantity on Click
+        $('.update-link').click(e => {
+            e.preventDefault()
+            const form = $(e.currentTarget).prev('.update-form');
+            form.submit();
+        })
+
+        // Remove item and reload on Click
+        $('.remove-link').click(e => {
+            e.preventDefault()
+            const csrftoken = "{{ csrf_token }}"
+            const itemId = $(e.currentTarget).attr('id').split('remove_')[1];
+            const customMessage = $(e.currentTarget).data('customMessage');
+            const url = `/cart/remove${itemId}`
+            const data = {
+                'csrfmiddlewaretoken' : csrftoken,
+                'custom_message': customMessage
+            }
+
+            $.post(url, data)
+            .done(()=>{
+                location.reload()
+            })
+        })
+    </script>
 {% endblock postload_js %}
