@@ -13,6 +13,10 @@ def cart_content(request):
     cart = request.session.get('cart', {})
 
     for item_id, item_data in cart.items():
+        product = Product.objects.filter(pk=item_id)
+        if not product:
+            cart.pop(item_id)
+            break
         if isinstance(item_data, int):
             product = get_object_or_404(Product, pk=item_id)
             subtotal = product.price * item_data
