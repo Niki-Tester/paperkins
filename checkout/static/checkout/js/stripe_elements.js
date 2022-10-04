@@ -48,7 +48,8 @@ form.addEventListener('submit', e => {
         'disabled': true
     })
     $('#submit-button').attr('disabled', true)
-    $('#loading-overlay').css('display', 'flex')
+    $('#payment-form').fadeToggle(100);
+    $('#loading-overlay').fadeToggle(100).css('display', 'flex')
 
     stripe.confirmCardPayment(clientSecret, {
         payment_method: {
@@ -61,7 +62,9 @@ form.addEventListener('submit', e => {
                 'disabled': false
             })
             $('#submit-button').attr('disabled', false)
-            $('#loading-overlay').css('display', 'none')
+            $('#payment-form').fadeToggle(100);
+            $('#loading-overlay').fadeToggle(100).css('display', 'none')
+
             const html = `
                 <span class="icon" role="alert">
                     <i class="fas fa-times"></i>
