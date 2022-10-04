@@ -61,11 +61,11 @@ form.addEventListener('submit', e => {
             })
             $('#submit-button').attr('disabled', false)
             const html = `
-            <span class="icon" role="alert">
-                <i class="fas fa-times"></i>
-            </span>
-            <span>${result.error.message}</span>
-        `;
+                <span class="icon" role="alert">
+                    <i class="fas fa-times"></i>
+                </span>
+                <span>${result.error.message}</span>
+            `;
             $(errorDiv).html(html);
         } else {
             if (result.paymentIntent.status === 'succeeded') {
