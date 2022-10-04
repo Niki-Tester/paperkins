@@ -41,7 +41,11 @@ def checkout(request):
 
         order_form = OrderForm(form_data)
         if order_form.is_valid():
-            order = order_form.save()
+            order = order_form.save(commit=False)
+            pid = request.POST.get('client_secret').split('_secret_')[0]
+            order.stripe_pid = pid
+            order.original_cart = json.dumps(cart)
+            order.save()
             for item_id, item_data in cart.items():
                 try:
                     product = Product.objects.get(pk=item_id)
@@ -131,7 +135,7 @@ def cache_checkout_data(request):
         stripe.api_key = settings.STRIPE_CLIENT_SECRET
         stripe.PaymentIntent.modify(pid, metadata={
             'cart': json.dumps(request.session.get('cart', {})),
-            'save-info': request.POST.get('save_info'),
+            'save_info': request.POST.get('save_info'),
             'username': request.user,
         })
 
@@ -139,5 +143,4 @@ def cache_checkout_data(request):
     except Exception as e:
         messages.error(request, 'Sorry, your payment cannot be processed at '
                        'the moment. Please try again later.')
-        print(e)
         return HttpResponse(content=e, status=400)

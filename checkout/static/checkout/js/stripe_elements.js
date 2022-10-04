@@ -52,14 +52,12 @@ form.addEventListener('submit', e => {
     $('#loading-overlay').fadeToggle(100).css('display', 'flex');
 
     const saveInfo = Boolean($('#id-save-info').prop('checked'));
-    console.log(saveInfo)
     const csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
     const postData = {
         'csrfmiddlewaretoken': csrfToken,
         'client_secret': clientSecret,
         'save_info': saveInfo,
     };
-    console.log(postData)
     const postURL = 'cache_checkout_data/';
 
     $.post(postURL, postData).done(() => {
