@@ -127,6 +127,12 @@
             </div>
         </div>
     </div>
+    <div id="loading-overlay" class="fade show">
+        <img src="{{ MEDIA_URL }}loading-animation.gif" alt="Loading animation">
+        <p class="font-weight-bold">Please Wait While We Process Your Payment</p>
+        <p class="text-danger font-weight-bold m-0">Do Not Close or Refresh Your Browser!</p>
+        <p class="small m-0">Doing so may result in duplicate payments or your order failing</p>
+    </div>
 {% endblock content %}
 
 {% block postload_js %}
