@@ -23,10 +23,10 @@ const card = elements.create('card', {
     style: style
 });
 
-card.mount('#card-element')
+card.mount('#card-element');
 
 card.addEventListener('change', e => {
-    const errorDiv = document.getElementById('card-errors')
+    const errorDiv = document.getElementById('card-errors');
     if (e.error) {
         const html = `
             <span class="icon" role="alert">
@@ -46,18 +46,43 @@ form.addEventListener('submit', e => {
     e.preventDefault();
     card.update({
         'disabled': true
-    })
-    $('#submit-button').attr('disabled', true)
+    });
+    $('#submit-button').attr('disabled', true);
     $('#payment-form').fadeToggle(100);
-    $('#loading-overlay').fadeToggle(100).css('display', 'flex')
+    $('#loading-overlay').fadeToggle(100).css('display', 'flex');
 
-    stripe.confirmCardPayment(clientSecret, {
-        payment_method: {
-            card: card,
-            billing_details: {
+    const saveInfo = Boolean($('#id-save-info').prop('checked'));
+    console.log(saveInfo)
+    const csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
+    const postData = {
+        'csrfmiddlewaretoken': csrfToken,
+        'client_secret': clientSecret,
+        'save_info': saveInfo,
+    };
+    console.log(postData)
+    const postURL = 'cache_checkout_data/';
+
+    $.post(postURL, postData).done(() => {
+        stripe.confirmCardPayment(clientSecret, {
+            payment_method: {
+                card: card,
+                billing_details: {
+                    name: $.trim(form.full_name.value),
+                    phone: $.trim(form.phone_number.value),
+                    email: $.trim(form.email.value),
+                    address: {
+                        line1: $.trim(form.street_address_1.value),
+                        line2: $.trim(form.street_address_2.value),
+                        city: $.trim(form.town_or_city.value),
+                        state: $.trim(form.county.value),
+                        postal_code: $.trim(form.postcode.value),
+                        country: $.trim(form.country.value),
+                    }
+                }
+            },
+            shipping: {
                 name: $.trim(form.full_name.value),
                 phone: $.trim(form.phone_number.value),
-                email: $.trim(form.email.value),
                 address: {
                     line1: $.trim(form.street_address_1.value),
                     line2: $.trim(form.street_address_2.value),
@@ -66,41 +91,31 @@ form.addEventListener('submit', e => {
                     postal_code: $.trim(form.postcode.value),
                     country: $.trim(form.country.value),
                 }
-            }
-        },
-        shipping: {
-            name: $.trim(form.full_name.value),
-            phone: $.trim(form.phone_number.value),
-            address: {
-                line1: $.trim(form.street_address_1.value),
-                line2: $.trim(form.street_address_2.value),
-                city: $.trim(form.town_or_city.value),
-                state: $.trim(form.county.value),
-                postal_code: $.trim(form.postcode.value),
-                country: $.trim(form.country.value),
-            }
-        },
-    }).then(result => {
-        const errorDiv = document.getElementById('card-errors')
-        if (result.error) {
-            card.update({
-                'disabled': false
-            })
-            $('#submit-button').attr('disabled', false)
-            $('#payment-form').fadeToggle(100);
-            $('#loading-overlay').fadeToggle(100).css('display', 'none')
+            },
+        }).then(result => {
+            const errorDiv = document.getElementById('card-errors');
+            if (result.error) {
+                card.update({
+                    'disabled': false
+                });
+                $('#submit-button').attr('disabled', false);
+                $('#payment-form').fadeToggle(100);
+                $('#loading-overlay').fadeToggle(100).css('display', 'none');
 
-            const html = `
-                <span class="icon" role="alert">
-                    <i class="fas fa-times"></i>
-                </span>
-                <span>${result.error.message}</span>
-            `;
-            $(errorDiv).html(html);
-        } else {
-            if (result.paymentIntent.status === 'succeeded') {
-                form.submit();
+                const html = `
+                    <span class="icon" role="alert">
+                        <i class="fas fa-times"></i>
+                    </span>
+                    <span>${result.error.message}</span>
+                `;
+                $(errorDiv).html(html);
+            } else {
+                if (result.paymentIntent.status === 'succeeded') {
+                    form.submit();
+                }
             }
-        }
+        });
+    }).fail(() => {
+        location.reload();
     });
 });
