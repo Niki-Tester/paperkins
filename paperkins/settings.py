@@ -174,6 +174,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STANDARD_DELIVERY_PERCENTAGE = 12
 
+STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', '')
+STRIPE_CLIENT_SECRET = os.environ.get('STRIPE_CLIENT_SECRET', '')
+STRIPE_WEBHOOK_ID = os.environ.get('STRIPE_WEBHOOK_ID', '')
+STRIPE_WEBHOOK_KEY = os.environ.get('STRIPE_WEBHOOK_KEY', '')
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
