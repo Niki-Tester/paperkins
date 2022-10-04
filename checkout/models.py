@@ -34,7 +34,7 @@ class Order(models.Model):
         accounting for delivery cost
         """
         self.order_total = self.lineitems.aggregate(
-            Sum('lineitem_total'))['lineitem_total__sum']
+            Sum('lineitem_total'))['lineitem_total__sum'] or 0
 
         self.delivery_cost = self.order_total * \
             settings.STANDARD_DELIVERY_PERCENTAGE / 100
