@@ -40,7 +40,7 @@ def checkout(request):
                     product = Product.objects.get(pk=item_id)
                     if isinstance(item_data, int):
                         order_line_item = OrderLineItem(
-                            order-order,
+                            order=order,
                             product=product,
                             quantity=item_data,
                         )
