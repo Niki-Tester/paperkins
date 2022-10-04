@@ -24,3 +24,53 @@ const card = elements.create('card', {
 });
 
 card.mount('#card-element')
+
+card.addEventListener('change', e => {
+    const errorDiv = document.getElementById('card-errors')
+    if (e.error) {
+        const html = `
+            <span class="icon" role="alert">
+                <i class="fas fa-times"></i>
+            </span>
+            <span>${e.error.message}</span>
+        `;
+        $(errorDiv).html(html);
+    } else {
+        errorDiv.textContent = '';
+    }
+});
+
+const form = document.getElementById('payment-form');
+
+form.addEventListener('submit', e => {
+    e.preventDefault();
+    card.update({
+        'disabled': true
+    })
+    $('#submit-button').attr('disabled', true)
+
+    stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+            card: card,
+        }
+    }).then(result => {
+        const errorDiv = document.getElementById('card-errors')
+        if (result.error) {
+            card.update({
+                'disabled': false
+            })
+            $('#submit-button').attr('disabled', false)
+            const html = `
+            <span class="icon" role="alert">
+                <i class="fas fa-times"></i>
+            </span>
+            <span>${result.error.message}</span>
+        `;
+            $(errorDiv).html(html);
+        } else {
+            if (result.paymentIntent.status === 'succeeded') {
+                form.submit();
+            }
+        }
+    });
+});
