@@ -161,7 +161,7 @@ a.category-badge>span.badge:hover {
     border-radius: 0;
 }
 
-.allauth-form-inner-content label:not([for='id_remember']) {
+.allauth-form-inner-content label:not([for='id_remember']):not(.email-label) {
     display: none;
 }
 
