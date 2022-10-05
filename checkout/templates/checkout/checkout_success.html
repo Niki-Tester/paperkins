@@ -17,16 +17,14 @@
     <div class="overlay"></div>
     <div class="container">
         <div class="row">
-            <div class="col">
-                <h2 class="logo-font mb-4 mt-4">Thank You</h2>
-                <hr>
-                <p class=" font-weight-bold">Your order information is below. A confirmation email will be sent to <strong>{{ order.email }}</strong>.</p>
+            <div class="col-lg-8 offset-lg-2 col-xl-6 offset-xl-3">
+                <h1 class="mt-4 mb-4 logo-font text-light text-shadow text-center">Thank You</h1>
+                <hr class="bg-warning">
             </div>
         </div>
-
         <div class="row">
-            <div class="col-12 col-lg-7">
-                <div class="order-confirmation-wrapper p-2 border bg-white">
+            <div class="col-12 col-lg-8 offset-lg-2 col-xl-6 offset-xl-3">
+                <div class="order-confirmation-wrapper p-4 bg-white">
                     {# Order Info #}
                     <div class="row">
                         <div class="col">
@@ -193,9 +191,9 @@
             </div>
         </div>
         <div class="row">
-			<div class="col-12 col-lg-7 text-right">
+			<div class="col-12 text-center">
 				<a href="{% url 'products' %}?category=unique_collaboration" class="btn btn-dark rounded-0 my-2">
-					<span class="icon mr-2">
+					<span class="icon mr-2 d-none d-sm-inline">
 						<i class="fas fa-gifts"></i>
 					</span>
 					<span class="text-uppercase">Now check out our limited edition items!</span>
