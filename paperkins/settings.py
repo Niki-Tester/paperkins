@@ -181,6 +181,8 @@ STRIPE_CLIENT_SECRET = os.environ.get('STRIPE_CLIENT_SECRET', '')
 STRIPE_WEBHOOK_ID = os.environ.get('STRIPE_WEBHOOK_ID', '')
 STRIPE_WEBHOOK_KEY = os.environ.get('STRIPE_WEBHOOK_KEY', '')
 
+DEFAULT_FROM_EMAIL = 'test@test.com'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
