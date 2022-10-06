@@ -41,7 +41,7 @@ def add_to_cart(request, item_id):
             cart[item_id] = quantity
 
     messages.add_message(request, settings.CART_NOTIFICATION,
-                         f'{product.name.title()} successfully added to cart')
+                         f'{product.name.title} successfully added to cart')
     request.session['cart'] = cart
     return redirect(redirect_url)
 
@@ -60,22 +60,22 @@ def update_cart_item(request, item_id):
         if quantity > 0:
             cart[item_id]['items_by_message'][custom_message] = quantity
             messages.add_message(request, settings.CART_NOTIFICATION,
-                                 f'{product.name.title()}'
+                                 f'{product.name.title}'
                                  f' quantity changed to {quantity}')
         else:
             del cart[item_id]['items_by_message'][custom_message]
             messages.add_message(request, settings.CART_NOTIFICATION,
-                                 f'{product.name.title()} removed from cart')
+                                 f'{product.name.title} removed from cart')
     else:
         if quantity > 0:
             cart[item_id] = quantity
             messages.add_message(request, settings.CART_NOTIFICATION,
-                                 f'{product.name.title()}'
+                                 f'{product.name.title}'
                                  f' quantity changed to {quantity}')
         else:
             del cart[item_id]
             messages.add_message(request, settings.CART_NOTIFICATION,
-                                 f'{product.name.title()} removed from cart')
+                                 f'{product.name.title} removed from cart')
 
     request.session['cart'] = cart
     return redirect(reverse('view_cart'))
@@ -101,13 +101,13 @@ def remove_cart_item(request, item_id):
             del cart[item_id]
 
         messages.add_message(request, settings.CART_NOTIFICATION,
-                             f'{product.name.title()} removed from cart')
+                             f'{product.name.title} removed from cart')
 
         request.session['cart'] = cart
         return HttpResponse(status=200)
 
     except Exception as e:
         messages.error(
-            request, f'Failed to remove {product.name.title()}'
+            request, f'Failed to remove {product.name.title}'
             f' from cart. Error: {e}')
         return HttpResponse(500)
