@@ -59,7 +59,18 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 SITE_ID = 1
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+if 'DEVELOPMENT_ENV' in os.environ:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    DEFAULT_FROM_EMAIL = 'paperkins.shop@gmail.com'
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_USE_TLS = True
+    EMAIL_PORT = 587
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+    EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASS')
+    DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
+
 
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
@@ -215,7 +226,6 @@ STRIPE_CLIENT_SECRET = os.environ.get('STRIPE_CLIENT_SECRET', '')
 STRIPE_WEBHOOK_ID = os.environ.get('STRIPE_WEBHOOK_ID', '')
 STRIPE_WEBHOOK_KEY = os.environ.get('STRIPE_WEBHOOK_KEY', '')
 
-DEFAULT_FROM_EMAIL = 'test@test.com'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
