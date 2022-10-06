@@ -28,7 +28,6 @@ DEBUG = os.environ.get('DEVELOPMENT_ENV')
 
 ALLOWED_HOSTS = ['paperkins.herokuapp.com', 'localhost']
 
-
 # Application definition
 
 INSTALLED_APPS = [
