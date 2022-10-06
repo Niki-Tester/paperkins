@@ -107,6 +107,11 @@ a.category-badge>span.badge:hover {
     overflow-y: auto;
 }
 
+.order-history {
+    max-height: 415px;
+    overflow-y: auto;
+}
+
 /* from CSS-tricks.com: http://css-tricks.com/snippets/css/css-triangle */
 .arrow-up {
     width: 0;
