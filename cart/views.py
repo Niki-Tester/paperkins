@@ -7,6 +7,7 @@ from django.shortcuts import (
 )
 from django.contrib import messages
 from products.models import Product
+from django.conf import settings
 
 
 def view_cart(request):
@@ -39,8 +40,7 @@ def add_to_cart(request, item_id):
         else:
             cart[item_id] = quantity
 
-    CART_NOTIFICATION = 26
-    messages.add_message(request, CART_NOTIFICATION,
+    messages.add_message(request, settings.CART_NOTIFICATION,
                          f'{product.name.title()} successfully added to cart')
     request.session['cart'] = cart
     return redirect(redirect_url)
@@ -59,23 +59,23 @@ def update_cart_item(request, item_id):
     if custom_message or custom_message == '':
         if quantity > 0:
             cart[item_id]['items_by_message'][custom_message] = quantity
-            messages.success(
-                request, f'{product.name.title()}'
-                f' quantity changed to {quantity}')
+            messages.add_message(request, settings.CART_NOTIFICATION,
+                                 f'{product.name.title()}'
+                                 f' quantity changed to {quantity}')
         else:
             del cart[item_id]['items_by_message'][custom_message]
-            messages.success(
-                request, f'{product.name.title()} removed from cart')
+            messages.add_message(request, settings.CART_NOTIFICATION,
+                                 f'{product.name.title()} removed from cart')
     else:
         if quantity > 0:
             cart[item_id] = quantity
-            messages.success(
-                request, f'{product.name.title()}'
-                f' quantity changed to {quantity}')
+            messages.add_message(request, settings.CART_NOTIFICATION,
+                                 f'{product.name.title()}'
+                                 f' quantity changed to {quantity}')
         else:
             del cart[item_id]
-            messages.success(
-                request, f'{product.name.title()} removed from cart')
+            messages.add_message(request, settings.CART_NOTIFICATION,
+                                 f'{product.name.title()} removed from cart')
 
     request.session['cart'] = cart
     return redirect(reverse('view_cart'))
@@ -100,8 +100,8 @@ def remove_cart_item(request, item_id):
         else:
             del cart[item_id]
 
-        messages.success(
-            request, f'{product.name.title()} removed from cart')
+        messages.add_message(request, settings.CART_NOTIFICATION,
+                             f'{product.name.title()} removed from cart')
 
         request.session['cart'] = cart
         return HttpResponse(status=200)

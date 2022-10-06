@@ -118,6 +118,8 @@ TEMPLATES = [
     },
 ]
 
+# Django messages level for cart notifications
+CART_NOTIFICATION = 26
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 AUTHENTICATION_BACKENDS = [
