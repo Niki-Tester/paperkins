@@ -1,6 +1,6 @@
 Hello {{ order.full_name }}
 
-This is a confirmation of your order at {{ site_name }}. Your order information is below:
+This is a confirmation of your order at {{ request.site.name }}. Your order information is below:
 
 Order Total: £{{ order.order_total }}
 Delivery: £{{ order.delivery_cost }}
@@ -16,4 +16,4 @@ Thank you for your order!
 
 Sincerely
 
-{{ site_domain }}
+{{ request.site.domain }}

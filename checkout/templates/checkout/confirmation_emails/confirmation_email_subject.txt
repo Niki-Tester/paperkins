@@ -1,1 +1,1 @@
-{{ requst.site.name }} Confirmation for Order Number {{ order.order_number }}
+{{ request.site.name }} Confirmation for Order Number {{ order.order_number }}
