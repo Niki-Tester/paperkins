@@ -1,7 +1,6 @@
 from django.db import models
 from django.dispatch import receiver
 from django.db.models.signals import post_delete, post_init, post_save
-import os
 
 
 class Category(models.Model):
