@@ -1,54 +1,56 @@
-<div class="collapse navbar-collapse" id="main-nav">
-    <ul class="navbar-nav w-auto mx-auto">
-        <li class="nav-item dropdown">
-            <a class="font-weight-bold nav-link text-dark mr-5" href="#" id="all-crafts-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                All Crafts
-            </a>
-            <div class="dropdown-menu border-0" aria-labelledby="all-crafts-link">
-                <a href="{% url 'products' %}?sort=price&direction=asc" class="dropdown-item">By Price</a>
-                <a href="{% url 'products' %}?sort=price&direction=dec" class="dropdown-item">By Rating</a>
-                <a href="{% url 'products' %}?sort=category&direction=asc" class="dropdown-item">By Category</a>
-                <a href="{% url 'products' %}" class="dropdown-item">All Crafts</a>
-            </div>
-        </li>
-
-        <li class="nav-item dropdown">
-            <a class="font-weight-bold nav-link text-dark mr-5" href="#" id="cards-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Greetings Cards
-            </a>
-            <div class="dropdown-menu border-0" aria-labelledby="cards-link">
-                <a href="{% url 'products' %}?category=cards_for_him" class="dropdown-item">For Him</a>
-                <a href="{% url 'products' %}?category=cards_for_her" class="dropdown-item">For Her</a>
-                <a href="{% url 'products' %}?category=cards_special_occasions" class="dropdown-item">Special Occasions</a>
-                <a href="{% url 'products' %}?category=cards_for_him,cards_for_her,cards_special_occasions" class="dropdown-item">All Cards</a>
-            </div>
-        </li>
-
-        <li class="nav-item dropdown">
-            <a class="font-weight-bold nav-link text-dark mr-5" href="#" id="collections-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Collections
-            </a>
-            <div class="dropdown-menu border-0" aria-labelledby="collections-link">
-                <a href="{% url 'products' %}?category=accessories" class="dropdown-item">Accessories</a>
-                <a href="{% url 'products' %}?category=dungeons_dragons" class="dropdown-item">Dungeons &amp; Dragons</a>
-                <a href="{% url 'products' %}?category=lamps" class="dropdown-item">Lamps</a>
-                <a href="{% url 'products' %}?category=pins" class="dropdown-item">Pins</a>
-                <a href="{% url 'products' %}?category=plants" class="dropdown-item">Plants</a>
-                <a href="{% url 'products' %}?category=seasonal" class="dropdown-item">Seasonal</a>
-                <a href="{% url 'products' %}?category=stationery" class="dropdown-item">Stationery</a>
-                <a href="{% url 'products' %}?category=accessories,dungeons_dragons,lamps,pins,plants,seasonal,stationery" class="dropdown-item">All Collections</a>
-            </div>
-        </li>
-
-        <li class="nav-item dropdown">
-            <a class="font-weight-bold nav-link text-dark mr-5" href="#" id="special-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Specials
-            </a>
-            <div class="dropdown-menu border-0" aria-labelledby="special-link">
-                <a href="{% url 'products' %}?category=custom_commissions" class="dropdown-item">Custom Commissions</a>
-                <a href="{% url 'products' %}?category=unique_collaboration" class="dropdown-item">Unique &amp; Collaborations</a>
-                <a href="{% url 'products' %}?category=custom_commissions,unique_collaboration" class="dropdown-item">All Specials</a>
-            </div>
-        </li>
-    </ul>
+<div class="container">
+    <div class="collapse navbar-collapse" id="main-nav">
+        <ul class="navbar-nav w-auto mx-auto">
+            <li class="nav-item dropdown">
+                <a class="font-weight-bold nav-link text-dark mr-5" href="#" id="all-crafts-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    All Crafts
+                </a>
+                <div class="dropdown-menu border-0" aria-labelledby="all-crafts-link">
+                    <a href="{% url 'products' %}?sort=price&direction=asc" class="dropdown-item">By Price</a>
+                    <a href="{% url 'products' %}?sort=price&direction=dec" class="dropdown-item">By Rating</a>
+                    <a href="{% url 'products' %}?sort=category&direction=asc" class="dropdown-item">By Category</a>
+                    <a href="{% url 'products' %}" class="dropdown-item">All Crafts</a>
+                </div>
+            </li>
+    
+            <li class="nav-item dropdown">
+                <a class="font-weight-bold nav-link text-dark mr-5" href="#" id="cards-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Greetings Cards
+                </a>
+                <div class="dropdown-menu border-0" aria-labelledby="cards-link">
+                    <a href="{% url 'products' %}?category=cards_for_him" class="dropdown-item">For Him</a>
+                    <a href="{% url 'products' %}?category=cards_for_her" class="dropdown-item">For Her</a>
+                    <a href="{% url 'products' %}?category=cards_special_occasions" class="dropdown-item">Special Occasions</a>
+                    <a href="{% url 'products' %}?category=cards_for_him,cards_for_her,cards_special_occasions" class="dropdown-item">All Cards</a>
+                </div>
+            </li>
+    
+            <li class="nav-item dropdown">
+                <a class="font-weight-bold nav-link text-dark mr-5" href="#" id="collections-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Collections
+                </a>
+                <div class="dropdown-menu border-0" aria-labelledby="collections-link">
+                    <a href="{% url 'products' %}?category=accessories" class="dropdown-item">Accessories</a>
+                    <a href="{% url 'products' %}?category=dungeons_dragons" class="dropdown-item">Dungeons &amp; Dragons</a>
+                    <a href="{% url 'products' %}?category=lamps" class="dropdown-item">Lamps</a>
+                    <a href="{% url 'products' %}?category=pins" class="dropdown-item">Pins</a>
+                    <a href="{% url 'products' %}?category=plants" class="dropdown-item">Plants</a>
+                    <a href="{% url 'products' %}?category=seasonal" class="dropdown-item">Seasonal</a>
+                    <a href="{% url 'products' %}?category=stationery" class="dropdown-item">Stationery</a>
+                    <a href="{% url 'products' %}?category=accessories,dungeons_dragons,lamps,pins,plants,seasonal,stationery" class="dropdown-item">All Collections</a>
+                </div>
+            </li>
+    
+            <li class="nav-item dropdown">
+                <a class="font-weight-bold nav-link text-dark mr-5" href="#" id="special-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Specials
+                </a>
+                <div class="dropdown-menu border-0" aria-labelledby="special-link">
+                    <a href="{% url 'products' %}?category=custom_commissions" class="dropdown-item">Custom Commissions</a>
+                    <a href="{% url 'products' %}?category=unique_collaboration" class="dropdown-item">Unique &amp; Collaborations</a>
+                    <a href="{% url 'products' %}?category=custom_commissions,unique_collaboration" class="dropdown-item">All Specials</a>
+                </div>
+            </li>
+        </ul>
+    </div>
 </div>

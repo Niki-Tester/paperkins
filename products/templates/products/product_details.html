@@ -21,115 +21,117 @@
         </div>
     </div>
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-12 col-md-6 col-lg-4 offset-lg-2 bg-white">
-                {# Product Image #}
-                <div class="my-5">
-                    {% if product.image %}
-                        <a href="{{ product.image.url }}" target="_blank">
-                            <img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
-                        </a>
-                    {% else %}
-                        <img class="img-fluid" src="{{ MEDIA_URL }}no-image.webp" alt="{{ product.name }}">
-                    {% endif %}
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-6 col-lg-4 offset-lg-2 bg-white">
+                    {# Product Image #}
+                    <div class="my-5">
+                        {% if product.image %}
+                            <a href="{{ product.image.url }}" target="_blank">
+                                <img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
+                            </a>
+                        {% else %}
+                            <img class="img-fluid" src="{{ MEDIA_URL }}no-image.webp" alt="{{ product.name }}">
+                        {% endif %}
+                    </div>
                 </div>
-            </div>
-            {# Product Details #}
-            <div class="col-12 col-md-6 col-lg-4 bg-white">
-                <div class="mb-5 mt-md-5">
-                    {# Product Price #}
-                    <p class="lead mb-0 text-left font-weight-bold">£{{ product.price }}</p>
-                    {# Product Category #}
-                    {% if product.category %}
-                    <p class="small mt-1 mb-0">
-                        <a class="text-muted" href="">
-                            <i class="fas fa-tag mr-1"></i>{{ product.category.friendly_name }}
-                        </a>
-                    </p>
-                    {% endif %}
-                    {# Product Rating #}
-                    {% if product.rating %}
-                        <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.rating }} / 5</small>
-                    {% else %}
-                        <small class="text-muted">No Rating</small>
-                    {% endif %}
-                    {# Product Admin #}
-                    {% if request.user.is_superuser %}
-                        <small class="ml-3">
-                            <a href="{% url 'update_product' product.id  %}" class="btn btn-info btn-sm rounded-0">Edit</a>
-                            {# Button trigger modal #}
-                            <button type="button" class="btn btn-danger btn-sm rounded-0" data-toggle="modal" data-target="#delete-confirmation">
-                                Delete
-                            </button>
-                        </small>
-                    {% endif %}
-                    {# Product Description #}
-                    <p class="mt-3 pre-wrap">{{ product.description }}</p>
-                    <input type="number" name="stock-qty" id="stock-qty" class="d-none" value="{{ product.stock_qty }}">
-                    {# Product Stock Message #}
-                    {% if product.stock_qty == 0 %}
-                        <p class="text-danger mb-0">Out of Stock</p>
-                    {% elif product.stock_qty  < 10 %}
-                        <p class="text-warning mb-0">{{ product.stock_qty }} Remaining</p>
-                    {% else %}
-                        <p class="text-success mb-0">In Stock</p>
-                    {% endif %}
-                    {# Product Quantity Selector #}
-                    <form class="form" action="{% url 'add_to_cart' product.id %}" method="POST">
-                        {% csrf_token %}
-                        <div class="form-row">
-                            <div class="col-12">
-                                <p class="mt-3"><strong>Quantity:</strong></p>
-                                <div class="form-group w-50">
-                                    <div class="input-group">
-                                        {# Product Quantity Decrement #}
-                                        <div class="input-group-prepend">
-                                            <button class="decrement-qty btn btn-dark rounded-0"
-                                                data-item-id="{{ product.id }}" id="decrement-qty_{{ product.id }}">
-                                                <span class="icon">
-                                                    <i class="fas fa-minus"></i>
-                                                </span>
-                                            </button>
-                                        </div>
-                                        {# Product Quantity  #}
-                                        <input class="form-control qty_input" type="number"
-                                            name="quantity" value="1" min="1" max="{{product.stock_qty}}"
-                                                data-item_id="{{ product.id }}" id="id_qty_{{ product.id }}">
-                                        {# Product Quantity Increment #}
-                                        <div class="input-group-append">
-                                            <button class="increment-qty btn btn-dark rounded-0"
-                                                data-item-id="{{ product.id }}" id="increment-qty_{{ product.id }}">
-                                                <span class="icon">
-                                                    <i class="fas fa-plus"></i>
-                                                </span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <p id="quantity_message_{{product.id}}"></p>
-                                </div>
-                            </div>
-                            {# Custom Message #}
-                            {% if product.has_custom_message %}
-                                <div class="form-group mb-0 col-8">
-                                    <label for="custom_message">Want it sending direct? Customize your item with a personal message!</label>
-                                    <textarea class="form-control" name="custom_message" id="custom_message" rows="5" maxlength="50"></textarea>
-                                </div>
+                {# Product Details #}
+                <div class="col-12 col-md-6 col-lg-4 bg-white">
+                    <div class="mb-5 mt-md-5">
+                        {# Product Price #}
+                        <p class="lead mb-0 text-left font-weight-bold">£{{ product.price }}</p>
+                        {# Product Category #}
+                        {% if product.category %}
+                        <p class="small mt-1 mb-0">
+                            <a class="text-muted" href="">
+                                <i class="fas fa-tag mr-1"></i>{{ product.category.friendly_name }}
+                            </a>
+                        </p>
+                        {% endif %}
+                        {# Product Rating #}
+                        {% if product.rating %}
+                            <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.rating }} / 5</small>
+                        {% else %}
+                            <small class="text-muted">No Rating</small>
+                        {% endif %}
+                        {# Product Admin #}
+                        {% if request.user.is_superuser %}
+                            <small class="ml-3">
+                                <a href="{% url 'update_product' product.id  %}" class="btn btn-info btn-sm rounded-0">Edit</a>
+                                {# Button trigger modal #}
+                                <button type="button" class="btn btn-danger btn-sm rounded-0" data-toggle="modal" data-target="#delete-confirmation">
+                                    Delete
+                                </button>
+                            </small>
+                        {% endif %}
+                        {# Product Description #}
+                        <p class="mt-3 pre-wrap">{{ product.description }}</p>
+                        <input type="number" name="stock-qty" id="stock-qty" class="d-none" value="{{ product.stock_qty }}">
+                        {# Product Stock Message #}
+                        {% if product.stock_qty == 0 %}
+                            <p class="text-danger mb-0">Out of Stock</p>
+                        {% elif product.stock_qty  < 10 %}
+                            <p class="text-warning mb-0">{{ product.stock_qty }} Remaining</p>
+                        {% else %}
+                            <p class="text-success mb-0">In Stock</p>
+                        {% endif %}
+                        {# Product Quantity Selector #}
+                        <form class="form" action="{% url 'add_to_cart' product.id %}" method="POST">
+                            {% csrf_token %}
+                            <div class="form-row">
                                 <div class="col-12">
-                                    <small class="text-muted">Leave blank if a message is not needed</small>
+                                    <p class="mt-3"><strong>Quantity:</strong></p>
+                                    <div class="form-group w-50">
+                                        <div class="input-group">
+                                            {# Product Quantity Decrement #}
+                                            <div class="input-group-prepend">
+                                                <button class="decrement-qty btn btn-dark rounded-0"
+                                                    data-item-id="{{ product.id }}" id="decrement-qty_{{ product.id }}">
+                                                    <span class="icon">
+                                                        <i class="fas fa-minus"></i>
+                                                    </span>
+                                                </button>
+                                            </div>
+                                            {# Product Quantity  #}
+                                            <input class="form-control qty_input" type="number"
+                                                name="quantity" value="1" min="1" max="{{product.stock_qty}}"
+                                                    data-item_id="{{ product.id }}" id="id_qty_{{ product.id }}">
+                                            {# Product Quantity Increment #}
+                                            <div class="input-group-append">
+                                                <button class="increment-qty btn btn-dark rounded-0"
+                                                    data-item-id="{{ product.id }}" id="increment-qty_{{ product.id }}">
+                                                    <span class="icon">
+                                                        <i class="fas fa-plus"></i>
+                                                    </span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <p id="quantity_message_{{product.id}}"></p>
+                                    </div>
                                 </div>
-                            {% endif %}
-                            <div class="col{% if s %}-12 mt-2{% else %}-12{% endif %}">
-                                <a href="{% url 'products' %}" class="btn btn-dark border-white rounded-0 mt-5">
-                                    <span class="icon">
-                                        <i class="fas fa-chevron-left"></i>
-                                    </span>
-                                    <span class="text-uppercase">Keep Shopping</span>
-                                </a>
-                                <input id="addToBagButton" type="submit" class="btn border-dark rounded-0 text-uppercase mt-5" value="Add to Bag">
+                                {# Custom Message #}
+                                {% if product.has_custom_message %}
+                                    <div class="form-group mb-0 col-8">
+                                        <label for="custom_message">Want it sending direct? Customize your item with a personal message!</label>
+                                        <textarea class="form-control" name="custom_message" id="custom_message" rows="5" maxlength="50"></textarea>
+                                    </div>
+                                    <div class="col-12">
+                                        <small class="text-muted">Leave blank if a message is not needed</small>
+                                    </div>
+                                {% endif %}
+                                <div class="col{% if s %}-12 mt-2{% else %}-12{% endif %}">
+                                    <a href="{% url 'products' %}" class="btn btn-dark border-white rounded-0 mt-5">
+                                        <span class="icon">
+                                            <i class="fas fa-chevron-left"></i>
+                                        </span>
+                                        <span class="text-uppercase">Keep Shopping</span>
+                                    </a>
+                                    <input id="addToBagButton" type="submit" class="btn border-dark rounded-0 text-uppercase mt-5" value="Add to Bag">
+                                </div>
+                                <input type="hidden" name="redirect_url" value="{{ request.path }}">
                             </div>
-                            <input type="hidden" name="redirect_url" value="{{ request.path }}">
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
