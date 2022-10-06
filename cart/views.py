@@ -61,7 +61,7 @@ def update_cart_item(request, item_id):
             cart[item_id]['items_by_message'][custom_message] = quantity
             messages.success(
                 request, f'{product.name.title()}'
-                ' quantity changed to {quantity}')
+                f' quantity changed to {quantity}')
         else:
             del cart[item_id]['items_by_message'][custom_message]
             messages.success(
@@ -71,7 +71,7 @@ def update_cart_item(request, item_id):
             cart[item_id] = quantity
             messages.success(
                 request, f'{product.name.title()}'
-                ' quantity changed to {quantity}')
+                f' quantity changed to {quantity}')
         else:
             del cart[item_id]
             messages.success(
