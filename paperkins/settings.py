@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEVELOPMENT_ENV')
+DEBUG = 'DEVELOPMENT_ENV' in os.environ
 
 ALLOWED_HOSTS = ['paperkins.herokuapp.com', 'localhost']
 
@@ -122,7 +122,7 @@ WSGI_APPLICATION = 'paperkins.wsgi.application'
 
 CONNECT_DEPLOYED_DB = False
 
-if not os.environ.get('DEVELOPMENT_ENV') or CONNECT_DEPLOYED_DB:
+if 'DEVELOPMENT_ENV' not in os.environ or CONNECT_DEPLOYED_DB:
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
