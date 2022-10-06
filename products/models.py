@@ -39,14 +39,14 @@ class Product(models.Model):
 
 def _delete_file(instance):
     """ Deletes file from filesystem. """
-    instance.img.delete(save=False)
+    instance.image.delete(save=False)
 
 
 @receiver(post_delete, sender=Product)
 def _post_delete_receiver(sender, instance, **kwargs):
     if instance.image:
         print(instance.image)
-        _delete_file(instance.image.path)
+        _delete_file(instance)
 
 
 @receiver(post_init, sender=Product)
