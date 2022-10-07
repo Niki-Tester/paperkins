@@ -11,21 +11,17 @@
 
 {% block content %}
     <div class="overlay"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-8 offset-2">
-                {# Product Name as Heading #}
-                <h1 class="mt-4 mb-4 logo-font text-light text-shadow text-center">{{ product.name|title }}</h1>
-                <hr class="bg-warning">
-            </div>
-        </div>
-    </div>
     <div class="container-fluid">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-md-6 col-lg-4 offset-lg-2 bg-white">
+                <div class="col-12 col-md-10 offset-md-1">
+                    {# Product Name as Heading #}
+                    <h1 class="mt-4 mb-4 logo-font text-light text-shadow text-center">{{ product.name|title }}</h1>
+                    <hr class="bg-warning">
+                </div>
+                <div class="col-12 col-md-5 offset-md-1 bg-white">
                     {# Product Image #}
-                    <div class="my-5">
+                    <div class="mt-3">
                         {% if product.image %}
                             <a href="{{ product.image.url }}" target="_blank">
                                 <img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
@@ -36,8 +32,8 @@
                     </div>
                 </div>
                 {# Product Details #}
-                <div class="col-12 col-md-6 col-lg-4 bg-white">
-                    <div class="mb-5 mt-md-5">
+                <div class="col-12 col-md-5 bg-white">
+                    <div class="mb-3 mt-md-3">
                         {# Product Price #}
                         <p class="lead mb-0 text-left font-weight-bold">£{{ product.price }}</p>
                         {# Product Category #}
@@ -58,7 +54,7 @@
                         {% if request.user.is_superuser %}
                             <small class="ml-3">
                                 <a href="{% url 'update_product' product.id  %}" class="btn btn-info btn-sm rounded-0">Edit</a>
-                                {# Button trigger modal #}
+                                {# Delete Confirm Modal Trigger #}
                                 <button type="button" class="btn btn-danger btn-sm rounded-0" data-toggle="modal" data-target="#delete-confirmation">
                                     Delete
                                 </button>
@@ -67,20 +63,25 @@
                         {# Product Description #}
                         <p class="mt-3 pre-wrap">{{ product.description }}</p>
                         <input type="number" name="stock-qty" id="stock-qty" class="d-none" value="{{ product.stock_qty }}">
-                        {# Product Stock Message #}
-                        {% if product.stock_qty == 0 %}
-                            <p class="text-danger mb-0">Out of Stock</p>
-                        {% elif product.stock_qty  < 10 %}
-                            <p class="text-warning mb-0">{{ product.stock_qty }} Remaining</p>
-                        {% else %}
-                            <p class="text-success mb-0">In Stock</p>
-                        {% endif %}
-                        {# Product Quantity Selector #}
                         <form class="form" action="{% url 'add_to_cart' product.id %}" method="POST">
                             {% csrf_token %}
                             <div class="form-row">
                                 <div class="col-12">
-                                    <p class="mt-3"><strong>Quantity:</strong></p>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p><strong>Quantity:</strong></p>
+                                        </div>
+                                        <div class="col-6">
+                                            {# Product Stock Message #}
+                                            {% if product.stock_qty == 0 %}
+                                                <p class="text-danger mb-0 text-right">Out of Stock</p>
+                                            {% elif product.stock_qty  < 10 %}
+                                                <p class="text-warning mb-0 text-right">{{ product.stock_qty }} Remaining</p>
+                                            {% else %}
+                                                <p class="text-success mb-0 text-right">In Stock</p>
+                                            {% endif %}
+                                        </div>
+                                    </div>
                                     <div class="form-group">
                                         <div class="input-group">
                                             {# Product Quantity Decrement #}
@@ -106,27 +107,25 @@
                                                 </button>
                                             </div>
                                         </div>
-                                        <p id="quantity_message_{{product.id}}"></p>
+                                        <p id="quantity_message_{{product.id}}" class="text-center"></p>
                                     </div>
                                 </div>
                                 {# Custom Message #}
                                 {% if product.has_custom_message %}
-                                    <div class="form-group mb-0 col-8">
+                                    <div class="form-group col-12 text-center">
                                         <label for="custom_message">Want it sending direct? Customize your item with a personal message!</label>
                                         <textarea class="form-control" name="custom_message" id="custom_message" rows="5" maxlength="250"></textarea>
-                                    </div>
-                                    <div class="col-12">
-                                        <small class="text-muted">Leave blank if a message is not needed</small>
+                                        <p class="text-muted"><small>Leave blank if a message is not needed</small></p>
                                     </div>
                                 {% endif %}
-                                <div class="col{% if s %}-12 mt-2{% else %}-12{% endif %}">
-                                    <a href="{% url 'products' %}" class="btn btn-dark border-white rounded-0 mt-5">
+                                <div class="col-12">
+                                    <a href="{% url 'products' %}" class="btn btn-sm btn-dark rounded-0">
                                         <span class="icon">
                                             <i class="fas fa-chevron-left"></i>
                                         </span>
-                                        <span class="text-uppercase">Keep Shopping</span>
+                                        <span>Keep Shopping</span>
                                     </a>
-                                    <input id="addToCartButton" type="submit" class="btn border-dark rounded-0 text-uppercase mt-5" value="Add to Cart">
+                                    <input id="addToCartButton" type="submit" class="btn btn-sm border-dark rounded-0 float-right" value="Add to Cart">
                                 </div>
                                 <input type="hidden" name="redirect_url" value="{{ request.path }}">
                             </div>
@@ -134,9 +133,9 @@
                     </div>
                 </div>
             </div>
-        </div>
+    </div>
     </div>  
-    {# Modal #}
+    {# Confirm Delete Modal #}
     <div class="modal fade" id="delete-confirmation" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmationTitle" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content rounded-0">
