@@ -9,7 +9,7 @@
         const addToBagDisabled = currentValue > maxAvailable;
         $(`#decrement-qty_${itemId}`).prop('disabled', minusDisabled);
         $(`#increment-qty_${itemId}`).prop('disabled', plusDisabled);
-        $(`#addToBagButton`).prop('disabled', addToBagDisabled);
+        $(`#addToCartButton`).prop('disabled', addToBagDisabled);
     }
 
     // Display info message if quantity input value is equal to stock_qty value

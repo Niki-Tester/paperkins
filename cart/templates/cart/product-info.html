@@ -1,0 +1,4 @@
+<p class="my-0"><strong>{{ item.product.name|title }}</strong></p>
+{% if item.custom_message %}
+    <p class="custom-message"><strong>Custom Message:</strong> <span class="text-muted">{{ item.custom_message }}</span></p>
+{% endif %}

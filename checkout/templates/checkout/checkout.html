@@ -25,11 +25,8 @@
         </div>
         <div class="row">
             <div class="col-12 col-lg-6 order-lg-last p-4 bg-white">
-                <div class="col-12">
-                    <p class="text-muted font-weight bold">Order Summary ({{ product_count }})</p>
-                </div>
                 <div class="row">
-                    <div class="col-7 offset-2">
+                    <div class="col-7 offset-sm-2">
                         <p class="mb-1 mt-0 small text-muted">Item</p>
                     </div>
                     <div class="col-3 text-right">
@@ -38,34 +35,27 @@
                 </div>
                 {% for item in cart_items %}
                     <div class="row">
-                        <div class="col-12">
-                        </div>
-                        <div class="col-2 mb-1">
-                            <a href="{% url 'product_details' item.product.id %}">
-                                <img src="{% if item.product.image %}{{ item.product.image.url }}{% else %}{{ MEDIA_URL }}no-image.webp{% endif %}" alt="{{ product.name }}" class="w-100">
-                            </a>
-                        </div>
-                        <div class="col-7">
+                        <div class="col-8">
                             <p class="my-0"><strong>{{ item.product.name|title }}</strong></p>
                             <p class="my-0 small">Message: {% if item.custom_message %}{{ item.custom_message }}{% else %}N/A{% endif %}</p>
                             <p class="my-0 small text-muted">Qty: {{ item.quantity }}</p>
                         </div>
-                        <div class="col-3 text-right">
+                        <div class="col-4 text-right">
                             <p class="my-0 small text-muted">£{{ item.subtotal }}</p>
                         </div>
                     </div>
                 {% endfor %}
-                <hr class="my-0">
+                <hr class="my-1">
                 <div class="row text-dark text-right">
-                    <div class="col-8 offset-2">
+                    <div class="col-8">
                         <p class="my-0">Order Total:</p>
                         <p class="my-0">Delivery:</p>
                         <p class="my-0 font-weight-bold">Grand Total:</p>
                     </div>
-                    <div class="col-2">
-                        <p class="my-0">£{{ total | floatformat:2 }}</p>
-                        <p class="my-0">£{{ delivery | floatformat:2 }}</p>
-                        <p class="my-0"><strong>£ {{ grand_total | floatformat:2 }}</strong></p>
+                    <div class="col-3 px-0">
+                        <p class="m-0">£{{ total | floatformat:2 }}</p>
+                        <p class="m-0">£{{ delivery | floatformat:2 }}</p>
+                        <p class="m-0"><strong>£ {{ grand_total | floatformat:2 }}</strong></p>
                     </div>
                 </div>
             </div>
@@ -128,7 +118,7 @@
             </div>
         </div>
     </div>
-    <div id="loading-overlay">
+    <div id="loading-overlay" class="text-center">
         <img src="{{ MEDIA_URL }}loading-animation.gif" alt="Loading animation">
         <p class="font-weight-bold">Please Wait While We Process Your Payment</p>
         <p class="text-danger font-weight-bold m-0">Do Not Close or Refresh Your Browser!</p>

@@ -135,7 +135,7 @@
         {% endblock content %}
 
         {% block footer %}
-            {% if request.path != '/' %}
+            {% if request.path != '/' and request.path != '/cart/' %}
                 <div class="container-fluid footer-container bg-light mt-4">
                     <div class="container">
                         <div class="row">
@@ -156,6 +156,21 @@
             <script type="text/javascript">
                 $('.toast').toast({delay: 5000})
                 $('.toast').toast('show')
+            </script>
+            <script type="text/javascript">
+                $('.btt-link').click(()=>{
+                    window.scrollTo(0,0)
+                })
+        
+                $(window).scroll(function(){
+                    if($(document).scrollTop() > 100){
+                        $('.btt-link').css('opacity', 1)
+                    } else {
+                        $('.btt-link').css('opacity', 0)
+                    }
+                });
+        
+                $('.btt-link').css('opacity', 0)
             </script>
         {% endblock postload_js %}
     </body>

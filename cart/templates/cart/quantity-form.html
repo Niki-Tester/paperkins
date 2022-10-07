@@ -1,0 +1,41 @@
+<form class="form update-form" action="{% url 'update_cart_item' item.item_id %}" method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+        <div class="input-group">
+            {# Quantity Decrement #}
+            <div class="input-group-prepend">
+                <button class="decrement-qty btn btn-sm btn-dark rounded-0"
+                    data-item-id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
+                    <span>
+                        <i class="fas fa-minus fa-sm"></i>
+                    </span>
+                </button>
+            </div>
+            {# Quantity #}
+            <input class="form-control form-control-sm qty_input" type="number"
+                name="quantity" value="{{item.quantity}}" min="1" max="{{item.product.stock_qty}}"
+                    data-item_id="{{ item.item_id }}" id="id_qty_{{ item.item_id }}">
+            {# Quantity Increment #}
+            <div class="input-group-append">
+                <button class="increment-qty btn btn-sm btn-dark rounded-0"
+                    data-item-id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}">
+                    <span>
+                        <i class="fas fa-plus fa-sm"></i>
+                    </span>
+                </button>
+            </div>
+            {% if item.product.has_custom_message %}
+                <input type="hidden" type="text" name="custom_message" value="{{item.custom_message}}">
+            {% endif %}
+        </div>
+    </div>
+</form>
+{# Update Item Link #}
+<a href="" class="update-link text-info small">Update</a>
+{# Remove Item Link #}
+<a href="" class="remove-link text-danger small float-right" id="remove_{{item.item_id}}" {% if item.custom_message or item.custom_message == '' %}data-custom-message="{{item.custom_message}}{% endif %}">Remove</a>
+<div class="col-12">
+    <p id="quantity_message_{{item.product.id}}"></p>
+</div>
+
+    

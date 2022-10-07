@@ -120,6 +120,9 @@
             </div>
         </div>
     </div>
+    <button type="button" class="btn btn-floating text-white btn-lg btt-link" id="btn-back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 </div>
 {% endblock content %}
 
@@ -146,5 +149,20 @@
                 window.location.replace(currentUrl);
             }
         })
+    </script>
+    <script type="text/javascript">
+        $('.btt-link').click(()=>{
+            window.scrollTo(0,0)
+        })
+
+        $(window).scroll(function(){
+            if($(document).scrollTop() > 100){
+                $('.btt-link').css('opacity', 1)
+            } else {
+                $('.btt-link').css('opacity', 0)
+            }
+        });
+
+        $('.btt-link').css('opacity', 0)
     </script>
 {% endblock postload_js %}
