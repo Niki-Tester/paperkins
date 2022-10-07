@@ -8,11 +8,11 @@
     </div>
 {% endblock page_header %}
 {% block content %}
+<div class="overlay"></div>
     <div class="container">
-        <div class="overlay"></div>
         <div class="row align-items-center">
-            <div class="col-12 col-md-6 offset-md-3 col-lg-4 offset-lg-4 d-flex justify-content-center text-center mt-4">
-                <div class="allauth-form-inner-content p-4">
+            <div class="col-12 col-md-6 offset-md-3 col-lg-4 offset-lg-4 d-flex justify-content-center text-center">
+                <div class="allauth-form-inner-content">
                     {% block inner_content %}
                     {% endblock %}
                 </div>
