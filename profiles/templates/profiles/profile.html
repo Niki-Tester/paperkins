@@ -47,7 +47,7 @@
                             <thead>
                                 <th class="small font-weight-bold">Order Number</th>
                                 <th class="small font-weight-bold">Date</th>
-                                <th class="small font-weight-bold">Items</th>
+                                <th class="small font-weight-bold d-none d-sm-table-cell">Items</th>
                                 <th class="small font-weight-bold">Order Total</th>
                             </thead>
                             <tbody>
@@ -60,7 +60,7 @@
                                             </a>
                                         </td>
                                         <td class="small">{{ order.date }}</td>
-                                        <td>
+                                        <td class="d-none d-sm-table-cell">
                                             <ul class="list-unstyled">
                                                 {% for item in order.lineitems.all %}
                                                     <li class="small">

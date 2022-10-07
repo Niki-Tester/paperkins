@@ -215,14 +215,14 @@ a.category-badge>span.badge:hover {
 /* ------------- Media Queries */
 
 /* Larger container on xl screens */
-@media (min-width: 1200px) {
+@media (max-width: 1200px) {
     .container {
         max-width: 1500px;
     }
 }
 
 /* Fix top navbar only on medium and up screens */
-@media (min-width: 992px) {
+@media (max-width: 991px) {
     .fixed-top {
         position: fixed;
         top: 0;
@@ -234,4 +234,120 @@ a.category-badge>span.badge:hover {
     .header-container {
         margin-top: 148px;
     }
+
+    .nav-link {
+        padding: 0.1rem;
+        font-size: .8rem;
+    }
+
+    .nav-link i {
+        font-size: 1rem;
+    }
+
+    .navbar ul {
+        padding: 0;
+        margin-top: 1rem;
+        font-size: 0.5rem;
+    }
+
+    .navbar-toggler {
+        margin: 0;
+        padding: 0.5rem;
+        font-size: 1rem;
+    }
+
+    .btn:not(.btn-lg) {
+        font-size: .75rem;
+    }
+
+    .nav-item a {
+        font-size: 1rem;
+    }
+
+    #page-logo {
+        width: 200px;
+    }
+
+    .display-4 {
+        font-size: 2rem !important;
+    }
+
+    h2 a {
+        font-size: 1rem;
+        padding: 1rem;
+    }
+
+    .input-group {
+        width: 125%;
+    }
+
+    .btn.btn-outline-dark.rounded-0,
+    .btn.btn-dark.rounded-0 {
+        padding: 0.37rem;
+    }
+
+    .search {
+        height: 38px;
+        width: 38px;
+    }
+}
+
+@media (max-width: 330px) {
+    h1 {
+        font-size: 1.7rem;
+    }
+
+    p {
+        font-size: .8rem;
+    }
+
+    .header-container {
+        margin-top: 96px;
+    }
+
+    .message-container {
+        right: 0;
+        left: 0;
+    }
+
+    .message-container .toast-body {
+        font-size: 0.75rem;
+    }
+
+    .break-wrap {
+        word-wrap: break-word;
+    }
+
+    .dropdown-item {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.3rem;
+    }
+
+    .btn.btn-lg {
+        font-size: 0.8rem;
+        padding: 0.6rem;
+    }
+
+    .btn:not(.btn-lg):not(.decrement-qty):not(.increment-qty):not(.search) {
+        font-size: 0.68rem;
+        margin: 0.5rem 0;
+    }
+
+    .btn:not(.decrement-qty):not(.increment-qty):not(.search) .icon {
+        display: none;
+    }
+
+    .form-row {
+        width: 100%;
+    }
+
+    .form-group label {
+        font-size: 0.8rem;
+        width: 100%;
+    }
+
+    .footer-container span {
+        font-size: 0.7rem;
+    }
+
 }
