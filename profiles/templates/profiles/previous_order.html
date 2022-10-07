@@ -22,6 +22,7 @@
             <div class="row">
                 <div class="col-12 col-lg-8 offset-lg-2 col-xl-6 offset-xl-3">
                     <div class="order-confirmation-wrapper p-4 bg-white">
+                        <p class="text-danger text-center">You are viewing a previous order</p>
                         {# Order Info #}
                         <div class="row">
                             <div class="col">
@@ -189,21 +190,12 @@
             </div>
             <div class="row">
                 <div class="col-12 col-lg-8 offset-lg-2 col-xl-6 offset-xl-3 text-right">
-                    {% if request.path == url_endpoint %}
-                        <a href="{% url 'profile' %}" class="btn btn-dark rounded-0 my-2">
-                            <span class="icon mr-2 d-none d-sm-inline">
-                                <i class="fas fa-angle-left"></i>
-                            </span>
-                            <span class="text-uppercase">Back to profile</span>
-                        </a>
-                    {% else %}
-                        <a href="{% url 'products' %}?category=unique_collaboration" class="btn btn-dark rounded-0 my-2">
-                            <span class="icon mr-2 d-none d-sm-inline">
-                                <i class="fas fa-gifts"></i>
-                            </span>
-                            <span class="text-uppercase">Now check out our limited edition items!</span>
-                        </a>
-                    {% endif %}
+                    <a href="{% url 'profile' %}" class="btn btn-dark rounded-0 my-2">
+                        <span class="icon mr-2 d-none d-sm-inline">
+                            <i class="fas fa-angle-left"></i>
+                        </span>
+                        <span class="text-uppercase">Back to profile</span>
+                    </a>
                 </div>
             </div>
         </div>

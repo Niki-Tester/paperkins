@@ -41,7 +41,7 @@ def order_history(request, order_number):
                   f'order number: {order.order_number}. '
                   f'A confirmation email was sent to: {order.email} '
                   f'on {order.date}')
-    template = 'checkout/checkout_success.html'
+    template = 'profiles/previous_order.html'
     context = {
         'order': order
     }
