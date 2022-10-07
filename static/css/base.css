@@ -23,6 +23,12 @@ body {
     margin-top: 146px;
 }
 
+.container {
+    /* Sets minimum hight so footer at bottom of page */
+    /* Header hight 146px | Footer hight 285px | Footer Top Margin 2rem (32px) */
+    min-height: calc(100% - 463px);
+}
+
 .icon {
     align-items: center;
     display: inline-flex;
@@ -149,8 +155,8 @@ a.category-badge>span.badge:hover {
     overflow-y: auto;
 }
 
-.footer-container {
-    margin-top: 148px;
+footer {
+    margin-top: 2rem;
 }
 
 /* from CSS-tricks.com: http://css-tricks.com/snippets/css/css-triangle */
@@ -290,6 +296,10 @@ a.category-badge>span.badge:hover {
         font-size: .75rem;
     }
 
+    .btn:not(.decrement-qty):not(.increment-qty):not(.search) .icon {
+        display: none;
+    }
+
     .nav-item a {
         font-size: 1rem;
     }
@@ -309,11 +319,6 @@ a.category-badge>span.badge:hover {
 
     .input-group {
         width: 100%;
-    }
-
-    .btn.btn-outline-dark.rounded-0,
-    .btn.btn-dark.rounded-0 {
-        padding: 0.37rem;
     }
 
     .search {
@@ -360,11 +365,6 @@ a.category-badge>span.badge:hover {
 
     .btn:not(.btn-lg):not(.decrement-qty):not(.increment-qty):not(.search) {
         font-size: 0.66rem;
-        margin: 0.5rem 0;
-    }
-
-    .btn:not(.decrement-qty):not(.increment-qty):not(.search) .icon {
-        display: none;
     }
 
     .form-row {
