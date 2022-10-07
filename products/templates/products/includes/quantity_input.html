@@ -19,12 +19,12 @@
         const maxAvailable = parseInt($('#stock-qty').val())
 
         if (currentValue == maxAvailable){
-            $(`#quantity_message_${itemId}`).text(`Maximum Order Quantity`)
+            $(`#quantity_message_${itemId}`).text(`Order Limit Reached`)
             $(`#quantity_message_${itemId}`).addClass('text-info')
             $(`#quantity_message_${itemId}`).removeClass('text-danger')
 
         }else if(currentValue > maxAvailable){{
-            $(`#quantity_message_${itemId}`).text(`Order Quantity Exceeds Stock Available`)
+            $(`#quantity_message_${itemId}`).text(`Exceeds Order Limit`)
             $(`#quantity_message_${itemId}`).addClass('text-danger')
             $(`#quantity_message_${itemId}`).removeClass('text-info')
         }
