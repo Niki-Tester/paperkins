@@ -31,6 +31,26 @@ body {
     width: 1.5rem;
 }
 
+.icon-lg {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    font-size: 2rem;
+    height: 3.5rem;
+    width: 3.5rem;
+    text-decoration: none !important;
+}
+
+.text-purple {
+    color: purple !important;
+}
+
+.icon-lg:hover {
+    border: 2px dashed;
+    transition: border ease-in-out 100ms
+}
+
+
 #top-nav-logo {
     width: 150px;
 }
