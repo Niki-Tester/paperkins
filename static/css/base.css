@@ -14,16 +14,12 @@ body {
     flex-direction: column;
 }
 
-/* .container-fluid {
-    max-width: 1500px !important;
-} */
-
 .logo-font {
     font-family: 'Prompt', sans-serif;
 }
 
 .header-container {
-    margin-top: 96px;
+    margin-top: 146px;
 }
 
 .icon {
@@ -232,7 +228,7 @@ a.category-badge>span.badge:hover {
     }
 
     .header-container {
-        margin-top: 148px;
+        margin-top: 96px;
     }
 
     .nav-link {
