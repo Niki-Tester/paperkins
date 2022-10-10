@@ -1,0 +1,15 @@
+Hello {{ name }}
+
+This is a confirmation of signing up to our newsletter.
+
+If you requested to sign up to our newsletter. Thank You, you don't have to do anything further.
+
+If you did not make this request, you can unsubscribe here {{ unsubscribe_url }}/{{ subscriber_uid }}
+
+If you have any questions, feel free to contact us at {{ contact_email }}
+
+Thank you!
+
+Sincerely
+
+{{ request.site.domain }}
