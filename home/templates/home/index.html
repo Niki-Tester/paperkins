@@ -9,12 +9,12 @@
 {% endblock page_header %}
 
 {% block content %}
-    <div class="container-fluid">
-        <div class="container">
-            <div class="row mt-5">
-                <div class="col-12 col-md-8 my-auto">
+    <div class="container-fluid h-100">
+        <div class="container h-100">
+            <div class="row h-100">
+                <div class="col-12 h-100 d-flex flex-column justify-content-center align-items-center align-items-md-start">
                     <img id="page-logo" class="d-lg-none" src="{{ MEDIA_URL }}my-shop-logo-1603121535.webp" alt="Paperkins logo">
-                    <h1 class="display-4 text-light text-shadow logo-font">Unique &amp; Colourful Crafts</h1>
+                    <h1 class="display-4 text-light text-shadow logo-font text-center">Unique &amp; Colourful Crafts</h1>
                     <div class="my-3">
                         <h2>
                             <a href="{% url 'products' %}" class="shop-now-button btn btn-lg btn-light rounded-0 text-uppercase shadow">Shop Now</a>
