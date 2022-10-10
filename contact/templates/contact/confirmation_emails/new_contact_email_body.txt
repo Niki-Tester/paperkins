@@ -1,0 +1,16 @@
+Thank you for contacting us.
+
+This email is to confirm that we have received your message, and will reply as soon as possible.
+
+A copy of your message can be found below.
+
+If you have any further queries, you can contact us by email {{ contact_email }}
+
+Thank you
+
+{{ request.site.domain }}
+
+-------------------------------------
+Query: {{ users_query }}
+Message: {{ users_message }}
+-------------------------------------
