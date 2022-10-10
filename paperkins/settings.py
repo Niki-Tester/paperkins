@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'checkout',
     'profiles',
     'newsletter',
+    'contact',
 
     # Additional Apps
     'crispy_forms',
@@ -111,6 +112,7 @@ TEMPLATES = [
                 'django.template.context_processors.media',
                 'cart.contexts.cart_content',
                 'newsletter.contexts.newsletter_footer_form',
+                'contact.contexts.contact_us_form',
             ],
             'builtins': [
                 'crispy_forms.templatetags.crispy_forms_tags',
