@@ -3,7 +3,17 @@ from .models import Contact
 
 
 class ContactAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email', 'query', 'date_time')
+    list_display = ('name', 'email', 'query', 'date_time', 'response_sent')
+
+    readonly_fields = (
+        'name',
+        'email',
+        'query',
+        'date_time',
+        'message',
+        'response_message',
+        'response_sent')
+
     ordering = ('-date_time',)
 
 

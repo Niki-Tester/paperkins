@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'contact/css/contact.css' %}">
+{% endblock extra_css %}
+
+{% block page_header %}
+    <div class="header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="overlay"></div>
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="mt-4 mb-4 logo-font text-light text-shadow text-center">Customer Queries</h1>
+                    <hr class="bg-warning">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="p-4 bg-white">
+                        <p class="text-muted">Outstanding Queries</p>
+                        <table class="table table-striped text-center">
+                            <thead>
+                              <tr>
+                                <th scope="col">Query</th>
+                                <th scope="col">Date</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                {% for q in queries %}
+                                    {% if not q.response_sent %}
+                                        <tr class="clickable-row" data-toggle="modal" data-id="q.id" data-target="#queryModal-{{ q.id }}">
+                                            <td>{{ q.query|title }}</td>
+                                            <td>{{ q.date_time }}</td>
+                                        </tr>
+                                    {% endif %}
+                                {% endfor %}
+                            </tbody>
+                          </table>
+                        <p class="text-muted">Completed Queries</p>
+                        <table class="table table-striped text-center">
+                            <thead>
+                              <tr>
+                                <th scope="col">Query</th>
+                                <th scope="col">Date</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                {% for q in queries %}
+                                    {% if q.response_sent %}
+                                        <tr class="clickable-row" data-toggle="modal" data-id="q.id" data-target="#queryModal-{{ q.id }}">
+                                            <td>{{ q.query|title }}</td>
+                                            <td>{{ q.date_time }}</td>
+                                        </tr>
+                                    {% endif %}
+                                {% endfor %}
+                            </tbody>
+                          </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% for q in queries %}
+        <!-- Modal -->
+        <div class="modal fade" id="queryModal-{{q.id}}" tabindex="-1" role="dialog" aria-labelledby="queryModalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="queryModalLongTitle">{{q.query|title}} | {{ q.date_time }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <p><span class="font-weight-bold">Customer Name: </span>{{ q.name }}</p>
+                            <p class="font-weight-bold">Customers Message:</p>
+                            <p class="pre-wrap">{{ q.message }}</p>
+                        </div>
+                        <div class="col-12">
+                            {% if q.response_message %}
+                                <p class="font-weight-bold">Response:</p>
+                                <p class="pre-wrap">{{ q.response_message }}</p>
+                                <a href="{% url 'remove_query' q.id %}" class="btn btn-danger">Delete</a>
+                            {% else %}
+                                <form action="{% url 'send_response' q.id %}" method="POST">
+                                    {% csrf_token %}
+                                    {{ form|crispy }}
+                                    <a href="{% url 'remove_query' q.id %}" class="btn btn-danger">Delete</a>
+                                    <button type="submit" class="btn btn-success float-right">Send Response</button>
+                                </form>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

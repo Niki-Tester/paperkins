@@ -1,0 +1,18 @@
+Hi {{ query.name }}
+
+Thank you for contacting us.
+
+{{ query.response_message}}
+
+If you have any further queries, you can contact us by email {{ contact_email }}
+
+Thank You
+
+{{ request.site.domain }}
+
+Original Message:
+-------------------------------------
+Query Type: {{ query.query|title }}
+Message:
+{{ query.message }}
+-------------------------------------
