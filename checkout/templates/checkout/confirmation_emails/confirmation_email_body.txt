@@ -2,9 +2,9 @@ Hello {{ order.full_name }}
 
 This is a confirmation of your order at {{ request.site.name }}. Your order information is below:
 
-Order Total: £{{ order.order_total }}
-Delivery: £{{ order.delivery_cost }}
-Grand Total: £{{ order.grand_total }}
+Order Total: £{{ order.order_total|floatformat:2 }}
+Delivery: £{{ order.delivery_cost|floatformat:2 }}
+Grand Total: £{{ order.grand_total|floatformat:2 }}
 
 Your order will be shipped to {{ order.street_address_1 }} in {{ order.town_or_city }}, {{ order.country }}
 
