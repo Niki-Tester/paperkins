@@ -11,6 +11,7 @@ Thank you
 {{ request.site.domain }}
 
 -------------------------------------
-Query: {{ users_query }}
-Message: {{ users_message }}
+Query: {{ query.query|title }}
+Message:
+{{ query.message }}
 -------------------------------------

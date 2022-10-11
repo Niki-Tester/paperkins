@@ -1,1 +1,1 @@
-{{ request.site.name }} query confirmation.
+{{ request.site.name }} {{ query.query|title }} Query

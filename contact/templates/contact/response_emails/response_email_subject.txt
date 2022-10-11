@@ -1,1 +1,1 @@
-{{ request.site.name }} {{ query.query|title }} query response.
+{{ request.site.name }} {{ query.query|title }} Query

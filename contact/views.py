@@ -61,22 +61,19 @@ def send_response(request, id):
 @require_POST
 def contact_request(request):
     """ Process contact form sent from user """
-    form_data = request.POST
-    contact_form = ContactForm(form_data)
+    contact_form = ContactForm(request.POST)
     if contact_form.is_valid():
-        contact_form.save()
+        query = contact_form.save()
         subject = render_to_string(
             'contact/confirmation_emails/new_contact_email_subject.txt', {
                 'request': request,
+                'query': query,
             })
 
         message = render_to_string(
             'contact/confirmation_emails/new_contact_email_body.txt', {
                 'request': request,
-                'users_name': contact_form.cleaned_data['name'],
-                'users_email': contact_form.cleaned_data['email'],
-                'users_query': contact_form.cleaned_data['query'],
-                'users_message': contact_form.cleaned_data['message'],
+                'query': query,
                 'contact_email': settings.DEFAULT_FROM_EMAIL,
             })
 
