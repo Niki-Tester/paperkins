@@ -1,174 +1,172 @@
 {% if request.path != '/' %}
 {% load crispy_forms_tags %}
 
-    <footer>
-        <div class="container-fluid footer-container bg-light pt-2">
-            <div class="container">
-                <div class="row mt-3">
-                    <div class="col-3 p-0 text-center">
-                        <a href="https://facebook.com" target="_blank" class="text-primary bg-light shadow-sm icon-lg"><i class="fa-brands fa-square-facebook"></i></a>
-                    </div>
-                    <div class="col-3 p-0 text-center">
-                        <a href="https://instagram.com" target="_blank" class="text-danger bg-light shadow-sm icon-lg"><i class="fa-brands fa-instagram"></i></a>
-                    </div>
-                    <div class="col-3 p-0 text-center">
-                        <a href="https://twitter.com" target="_blank" class="text-info bg-light shadow-sm icon-lg"><i class="fa-brands fa-square-twitter"></i></a>
-                    </div>
-                    <div class="col-3 p-0 text-center">
-                        <a href="https://twitch.tv" target="_blank" class="bg-light shadow-sm icon-lg text-purple"><i class="fa-brands fa-twitch"></i></a>
-                    </div>
+    <footer class="bg-light container-fluid">
+        <div class="footer-container">
+            <div class="row mt-3">
+                <div class="col-3 p-0 text-center">
+                    <a href="https://facebook.com" target="_blank" class="text-primary bg-light shadow-sm icon-lg"><i class="fa-brands fa-square-facebook"></i></a>
                 </div>
-                <div class="row pt-4 text-center">
-                    <div class="col-12 col-sm-6 col-lg-3 p-3">
-                        <form class="form" action="{% url 'subscribe' %}" method="POST">
-                            {% csrf_token %}
-                            <p class="font-weight-bold">Get our latest news and offers</p>
-                            {% for field in newsletter_form %}
-                                {{ field| as_crispy_field }}                        
-                            {% endfor %}
-                            <button type="submit" class="btn btn-dark btn-sm rounded-0 mb-2">Sign Up</button>
-                        </form>
-                    </div>
-                    <div class="col-12 col-sm-6 col-lg-3 p-2 bg-white">
-                        <p class="font-weight-bold">Our Company</p>
-                        <ul class="list-unstyled">
-                            <li>
-                                {# About Us Modal Trigger #}
-                                <a href="#aboutUsModel" data-toggle="modal" data-target="#aboutUsModel">About Us</a>
-                            </li>
-                            <li>
-                                {# Contact Us Modal Trigger #}
-                                <a href="#contactUsModel" data-toggle="modal" data-target="#contactUsModel">Contact Us</a>
-                            </li>
-                            <li>
-                                {# Contact Us Modal Trigger #}
-                                <a href="#deliveryModel" data-toggle="modal" data-target="#deliveryModel">Delivery Info</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-12 col-sm-6 col-lg-3 p-2 bg-white">
-                        <p class="font-weight-bold">Your Account</p>
-                        <ul class="list-unstyled">
-                            <li><a href="{% url 'profile' %}">Profile &amp; Orders</a></li>
-                            <li><a href="{% url 'account_email' %}">Email Addresses</a></li>
-                            <li><a href="{% url 'account_reset_password' %}">Forgotten Password</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-12 col-sm-6 col-lg-3 p-2">
-                        <p class="font-weight-bold">Store Information</p>
-                        <ul class="list-unstyled">
-                            <li>Paperkins Crafts</li>
-                            <li>United Kingdom</li>
-                            <li><a href="mailto:paperkins.store+query@gmail.com">Paperkins.store@gmail.com</a></li>
-                        </ul>
-                    </div>
+                <div class="col-3 p-0 text-center">
+                    <a href="https://instagram.com" target="_blank" class="text-danger bg-light shadow-sm icon-lg"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+                <div class="col-3 p-0 text-center">
+                    <a href="https://twitter.com" target="_blank" class="text-info bg-light shadow-sm icon-lg"><i class="fa-brands fa-square-twitter"></i></a>
+                </div>
+                <div class="col-3 p-0 text-center">
+                    <a href="https://twitch.tv" target="_blank" class="bg-light shadow-sm icon-lg text-purple"><i class="fa-brands fa-twitch"></i></a>
                 </div>
             </div>
-        </div>
-        <div class="container-fluid bg-white">
-            <div class="row">
-                <div class="col-12 p-1 text-center text-muted">
-                    <a href="https://github.com/Niki-Tester" target="_blank"
-                        ><div class="icon mx-2"><i class="fa-brands fa-github-square"></i></div></a>
-                    <span class="text-muted">&copy; 2022: Niki Tester</span>
-                    <a href="https://www.linkedin.com/in/niki-tester/" target="_blank"
-                        ><div class="icon mx-2"><i class="fa-brands fa-linkedin footer-link"></i></div></a>
-                </div>
-            </div>
-        </div>
-        
-        
-        {# About Us Modal #}
-        <div class="modal fade" id="aboutUsModel" tabindex="-1" role="dialog" aria-labelledby="aboutUsModelTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content rounded-0">
-                <div class="modal-header">
-                <h5 class="modal-title" id="aboutUsModelTitle">About Us</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                </div>
-                <div class="modal-body">
-                    <p>Hi I'm Jess and the creator of paperkins.</p>
-
-                    <p>
-                        During my college years was when I initially started crafting, mainly card making for birthdays.
-                        I especially loved making cards for my nanna as it always made it extra special.
-                    </p>
-                    
-                    <p>Fast forward to 2016 I started making gifts for friends and family which included family trees and scrabble related gifts.</p>
-                    
-                    <p>Then shortly after the crafty button was born.</p>
-                    
-                    <p>My craft journey was forever changing and developing as to try find something that felt right for me.</p>
-                    
-                    <p>
-                        After trying a new craft which was paper art I was hooked then after much self doubt and unhappiness
-                            I decided to re-brand to fully embrace the craft that finally suits who I am.
-                        </p>
-                    
-                    <p>Every make is unique and has 100&percnt; love and care put into every design.</p>
-                    
-                    <p>Thank you for visiting my little shop <span class="text-danger"><i class="fa-solid fa-xl fa-heart"></i></span></p>
-                </div>
-            </div>
-            </div>
-        </div>
-
-        {# Contact Us Modal #}
-        <div class="modal fade" id="contactUsModel" tabindex="-1" role="dialog" aria-labelledby="contactUsModalTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content rounded-0">
-                <div class="modal-header">
-                <h5 class="modal-title" id="contactUsModalTitle">Contact Us</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                </div>
-                <div class="modal-body">
-                    <form action="{% url 'contact_request' %}" method="POST">
+            <div class="row pt-4 text-center">
+                <div class="col-12 col-sm-6 col-lg-3 p-3">
+                    <form class="form" action="{% url 'subscribe' %}" method="POST">
                         {% csrf_token %}
-                        {% for field in contact_form %}
-                            {{ field| as_crispy_field }}  
+                        <p class="font-weight-bold">Get our latest news and offers</p>
+                        {% for field in newsletter_form %}
+                            {{ field| as_crispy_field }}
                         {% endfor %}
-                        <a href="#contactUsModel" class="btn btn-light border-dark rounded-0" data-dismiss="modal">Close</a>
-                        <button type="submit" class="btn btn-dark rounded-0">Send</button>
+                        <button type="submit" class="btn btn-dark btn-sm rounded-0 mb-2">Sign Up</button>
                     </form>
                 </div>
-            </div>
-            </div>
-        </div>
-
-        {# Delivery Modal #}
-        <div class="modal fade" id="deliveryModel" tabindex="-1" role="dialog" aria-labelledby="deliveryModelTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content rounded-0">
-                <div class="modal-header">
-                <h5 class="modal-title" id="deliveryModelTitle">Delivery Information</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <div class="col-12 col-sm-6 col-lg-3 p-2 bg-white">
+                    <p class="font-weight-bold">Our Company</p>
+                    <ul class="list-unstyled">
+                        <li>
+                            {# About Us Modal Trigger #}
+                            <a href="#aboutUsModel" data-toggle="modal" data-target="#aboutUsModel">About Us</a>
+                        </li>
+                        <li>
+                            {# Contact Us Modal Trigger #}
+                            <a href="#contactUsModel" data-toggle="modal" data-target="#contactUsModel">Contact Us</a>
+                        </li>
+                        <li>
+                            {# Contact Us Modal Trigger #}
+                            <a href="#deliveryModel" data-toggle="modal" data-target="#deliveryModel">Delivery Info</a>
+                        </li>
+                    </ul>
                 </div>
-                <div class="modal-body">
-                    <p>
-                        Packages are generally dispatched within 2 days after receipt of payment and are shipped via Royal 
-                        Mail with tracking and drop-off without signature. If you prefer delivery with required
-                        signature, an additional cost will be applied, so please contact us before choosing this method.
-                        Whichever shipment choice you make, we will provide you with a link to track your package online.
-                    </p>
-
-                    <p>
-                        Shipping fees include handling and packing fees as well as postage costs.
-                        Handling fees are fixed, whereas transport fees vary according to total weight of the shipment.
-                        We advise you to group your items in one order. We cannot group two distinct orders placed separately, 
-                        and shipping fees will apply to each of them. Your package will be dispatched at your own risk, 
-                        but special care is taken to protect fragile objects.
-                    </p>
-
-                    <p>Boxes are amply sized and your items are well-protected.</p>
+                <div class="col-12 col-sm-6 col-lg-3 p-2 bg-white">
+                    <p class="font-weight-bold">Your Account</p>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'profile' %}">Profile &amp; Orders</a></li>
+                        <li><a href="{% url 'account_email' %}">Email Addresses</a></li>
+                        <li><a href="{% url 'account_reset_password' %}">Forgotten Password</a></li>
+                    </ul>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-3 p-2">
+                    <p class="font-weight-bold">Store Information</p>
+                    <ul class="list-unstyled">
+                        <li>Paperkins Crafts</li>
+                        <li>United Kingdom</li>
+                        <li><a href="mailto:paperkins.store+query@gmail.com">Paperkins.store@gmail.com</a></li>
+                    </ul>
                 </div>
             </div>
+            <div class="bg-white">
+                <div class="row">
+                    <div class="col-12 p-1 text-center text-muted">
+                        <a href="https://github.com/Niki-Tester" target="_blank"
+                            ><div class="icon mx-2"><i class="fa-brands fa-github-square"></i></div></a>
+                        <span class="text-muted">&copy; 2022: Niki Tester</span>
+                        <a href="https://www.linkedin.com/in/niki-tester/" target="_blank"
+                            ><div class="icon mx-2"><i class="fa-brands fa-linkedin footer-link"></i></div></a>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
+        
+        
+    {# About Us Modal #}
+    <div class="modal fade" id="aboutUsModel" tabindex="-1" role="dialog" aria-labelledby="aboutUsModelTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content rounded-0">
+            <div class="modal-header">
+            <h5 class="modal-title" id="aboutUsModelTitle">About Us</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <p>Hi I'm Jess and the creator of paperkins.</p>
+
+                <p>
+                    During my college years was when I initially started crafting, mainly card making for birthdays.
+                    I especially loved making cards for my nanna as it always made it extra special.
+                </p>
+                
+                <p>Fast forward to 2016 I started making gifts for friends and family which included family trees and scrabble related gifts.</p>
+                
+                <p>Then shortly after the crafty button was born.</p>
+                
+                <p>My craft journey was forever changing and developing as to try find something that felt right for me.</p>
+                
+                <p>
+                    After trying a new craft which was paper art I was hooked then after much self doubt and unhappiness
+                        I decided to re-brand to fully embrace the craft that finally suits who I am.
+                    </p>
+                
+                <p>Every make is unique and has 100&percnt; love and care put into every design.</p>
+                
+                <p>Thank you for visiting my little shop <span class="text-danger"><i class="fa-solid fa-xl fa-heart"></i></span></p>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    {# Contact Us Modal #}
+    <div class="modal fade" id="contactUsModel" tabindex="-1" role="dialog" aria-labelledby="contactUsModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content rounded-0">
+            <div class="modal-header">
+            <h5 class="modal-title" id="contactUsModalTitle">Contact Us</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <form action="{% url 'contact_request' %}" method="POST">
+                    {% csrf_token %}
+                    {% for field in contact_form %}
+                        {{ field| as_crispy_field }}  
+                    {% endfor %}
+                    <a href="#contactUsModel" class="btn btn-light border-dark rounded-0" data-dismiss="modal">Close</a>
+                    <button type="submit" class="btn btn-dark rounded-0">Send</button>
+                </form>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    {# Delivery Modal #}
+    <div class="modal fade" id="deliveryModel" tabindex="-1" role="dialog" aria-labelledby="deliveryModelTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content rounded-0">
+            <div class="modal-header">
+            <h5 class="modal-title" id="deliveryModelTitle">Delivery Information</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Packages are generally dispatched within 2 days after receipt of payment and are shipped via Royal 
+                    Mail with tracking and drop-off without signature. If you prefer delivery with required
+                    signature, an additional cost will be applied, so please contact us before choosing this method.
+                    Whichever shipment choice you make, we will provide you with a link to track your package online.
+                </p>
+
+                <p>
+                    Shipping fees include handling and packing fees as well as postage costs.
+                    Handling fees are fixed, whereas transport fees vary according to total weight of the shipment.
+                    We advise you to group your items in one order. We cannot group two distinct orders placed separately, 
+                    and shipping fees will apply to each of them. Your package will be dispatched at your own risk, 
+                    but special care is taken to protect fragile objects.
+                </p>
+
+                <p>Boxes are amply sized and your items are well-protected.</p>
+            </div>
+        </div>
+        </div>
+    </div>
 {% endif %}

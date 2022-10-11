@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Prompt&display=swap');
 
 html {
-    height: 100vh;
+    height: 100%;
     scroll-behavior: smooth;
 }
 
@@ -24,9 +24,7 @@ body {
 }
 
 .container {
-    /* Sets minimum hight so footer at bottom of page */
-    /* Header hight 146px | Footer hight 285px | Footer Top Margin 2rem (32px) */
-    min-height: calc(100% - 463px);
+    flex: 1 0 auto;
 }
 
 .icon {
@@ -156,7 +154,13 @@ a.category-badge>span.badge:hover {
 }
 
 footer {
+    flex-shrink: 0;
     margin-top: 2rem;
+}
+
+.footer-container {
+    max-width: 1140px;
+    margin: 0 auto;
 }
 
 /* from CSS-tricks.com: http://css-tricks.com/snippets/css/css-triangle */
@@ -253,7 +257,7 @@ footer {
 /* Larger container on xl screens */
 @media (max-width: 1200px) {
     .container {
-        max-width: 1500px;
+        max-width: 1140px;
     }
 }
 
@@ -375,9 +379,4 @@ footer {
         font-size: 0.8rem;
         width: 100%;
     }
-
-    .footer-container span {
-        font-size: 0.7rem;
-    }
-
 }

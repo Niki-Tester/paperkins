@@ -11,36 +11,34 @@
 
 {% block content %}
     <div class="overlay"></div>
-    <div class="container-fluid">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-md-8 offset-md-2 text-center">
-                    <h1 class="mt-4 logo-font text-light text-shadow">Product Management</h1>
-                    <h5 class="logo-font text-white text-shadow mt-0">Update Product</h5>
-                    <hr class="bg-warning">
-                </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-8 offset-md-2 text-center">
+                <h1 class="mt-4 logo-font text-light text-shadow">Product Management</h1>
+                <h5 class="logo-font text-white text-shadow mt-0">Update Product</h5>
+                <hr class="bg-warning">
             </div>
-            <div class="row">
-                <div class="col-12 col-md-8 offset-md-2 bg-white p-4">
-                    <form action="{% url 'update_product' product.id %}" class="form mb-2" method="post" enctype='multipart/form-data'>
-                        {% csrf_token %}
-                        {% for field in form %}
-                            {% if field.name != 'image' %}
-                                {{ field | as_crispy_field }}
-                            {% else %}
-                                {{ field }}
-                            {% endif %}
-                        {% endfor %}
-                        <div class="row">
-                            <div class="col-6">
-                                <a href="{% url 'product_details' product.id %}" class="btn btn-outline-dark rounded-0">Cancel</a>
-                            </div>
-                            <div class="col-6 text-right">
-                                <button type="submit" class="btn btn-info rounded-0">Update Product</button>
-                            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-8 offset-md-2 bg-white p-4">
+                <form action="{% url 'update_product' product.id %}" class="form mb-2" method="post" enctype='multipart/form-data'>
+                    {% csrf_token %}
+                    {% for field in form %}
+                        {% if field.name != 'image' %}
+                            {{ field | as_crispy_field }}
+                        {% else %}
+                            {{ field }}
+                        {% endif %}
+                    {% endfor %}
+                    <div class="row">
+                        <div class="col-6">
+                            <a href="{% url 'product_details' product.id %}" class="btn btn-outline-dark rounded-0">Cancel</a>
                         </div>
-                    </form>
-                </div>
+                        <div class="col-6 text-right">
+                            <button type="submit" class="btn btn-info rounded-0">Update Product</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

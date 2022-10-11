@@ -11,78 +11,76 @@
 
 {% block content %}
     <div class="overlay"></div>
-    <div class="container-fluid">
-        <div class="container">
-            <div class="row">
-                <div class="col-10 offset-1">
-                    <h1 class="mt-4 mb-4 logo-font text-light text-shadow text-center">Cart</h1>
-                    <hr class="bg-warning">
-                </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-10 offset-1">
+                <h1 class="mt-4 mb-4 logo-font text-light text-shadow text-center">Cart</h1>
+                <hr class="bg-warning">
             </div>
-            <div class="row">
-                <div class="col-10 offset-1 bg-white d-flex flex-column align-items-center p-4">
-                    {% if cart_items %}
-                        <div class="row">
-                            <div class="col-12 text-center">
-                                {% include 'cart/cart-total.html' %}
-                            </div>
+        </div>
+        <div class="row">
+            <div class="col-10 offset-1 bg-white d-flex flex-column align-items-center p-4">
+                {% if cart_items %}
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            {% include 'cart/cart-total.html' %}
                         </div>
-                        <div class="row">
-                            <div class="col-12 text-center">
-                                {% include 'cart/checkout-buttons.html' %}
-                                <p class="text-muted mt-2 mb-2">A summary of your order is below</p>
-                            </div>
-                            <div class="col-12">
-                                <hr class="bg-dark mb-2 mt-0">
-                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            {% include 'cart/checkout-buttons.html' %}
+                            <p class="text-muted mt-2 mb-2">A summary of your order is below</p>
                         </div>
-                        <div class="row">
-                            {% for item in cart_items %}
-                                <div class="col-12 col-sm-6 col-md-4 col-lg-3 border-bottom border-warning p-3 my-1 d-flex flex-column">
-                                    <div class="row">
-                                        <div class="col-12 mb-2">
-                                            {% include 'cart/product-image.html' %}
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12 mb-2">
-                                            {% include 'cart/product-info.html' %}
-                                        </div>
-                                    </div>
-                                    <div class="row mt-auto">
-                                        <div class="col-6">
-                                            <p class="small mb-0"><strong>Price Each:</strong></p>
-                                            <p class="mt-0">£{{ item.product.price }}</p>
-                                        </div>
-                                        <div class="col-6 order-sm-last text-right">
-                                            <p class="small mb-0"><strong >Subtotal: </strong></p>
-                                            <p class="mt-0">£{{ item.subtotal }}</p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            {% include 'cart/quantity-form.html' %}
-                                        </div>
+                        <div class="col-12">
+                            <hr class="bg-dark mb-2 mt-0">
+                        </div>
+                    </div>
+                    <div class="row">
+                        {% for item in cart_items %}
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-3 border-bottom border-warning p-3 my-1 d-flex flex-column">
+                                <div class="row">
+                                    <div class="col-12 mb-2">
+                                        {% include 'cart/product-image.html' %}
                                     </div>
                                 </div>
-                            {% endfor %}
+                                <div class="row">
+                                    <div class="col-12 mb-2">
+                                        {% include 'cart/product-info.html' %}
+                                    </div>
+                                </div>
+                                <div class="row mt-auto">
+                                    <div class="col-6">
+                                        <p class="small mb-0"><strong>Price Each:</strong></p>
+                                        <p class="mt-0">£{{ item.product.price }}</p>
+                                    </div>
+                                    <div class="col-6 order-sm-last text-right">
+                                        <p class="small mb-0"><strong >Subtotal: </strong></p>
+                                        <p class="mt-0">£{{ item.subtotal }}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        {% include 'cart/quantity-form.html' %}
+                                    </div>
+                                </div>
                             </div>
+                        {% endfor %}
                         </div>
-                    {% else %}
-                        <p class="lead mb-5">Your cart is empty</p>
-                        <a href="{% url 'products' %}" class="btn btn-outline-dark rounded-0">
-                            <span class="icon">
-                                <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="text-uppercase">Keep Shopping</span>
-                        </a>
-                    {% endif %}
-                </div>
+                    </div>
+                {% else %}
+                    <p class="lead mb-5">Your cart is empty</p>
+                    <a href="{% url 'products' %}" class="btn btn-outline-dark rounded-0">
+                        <span class="icon">
+                            <i class="fas fa-chevron-left"></i>
+                        </span>
+                        <span class="text-uppercase">Keep Shopping</span>
+                    </a>
+                {% endif %}
             </div>
-            <button type="button" class="btn btn-floating text-white btn-lg btt-link" id="btn-back-to-top">
-                <i class="fas fa-arrow-up"></i>
-            </button>
         </div>
+        <button type="button" class="btn btn-floating text-white btn-lg btt-link" id="btn-back-to-top">
+            <i class="fas fa-arrow-up"></i>
+        </button>
     </div>
 {% endblock content %}
 
