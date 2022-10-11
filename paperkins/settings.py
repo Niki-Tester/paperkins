@@ -24,8 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = 'DEVELOPMENT_ENV' in os.environ
-DEBUG = True
+DEBUG = 'DEVELOPMENT_ENV' in os.environ
 
 ALLOWED_HOSTS = ['paperkins.herokuapp.com', 'localhost']
 
