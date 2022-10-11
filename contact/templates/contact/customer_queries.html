@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% load crispy_forms_tags %}
-
+{% block extra_title %}| Customer Queries{% endblock extra_title %}
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'contact/css/contact.css' %}">
 {% endblock extra_css %}
