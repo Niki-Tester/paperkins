@@ -39,20 +39,14 @@
                         {# Product Category #}
                         {% if product.category %}
                         <p class="small mt-1 mb-0">
-                            <a class="text-muted" href="">
+                            <a class="text-muted" href="{% url 'products' %}?category={{ product.category.name }}">
                                 <i class="fas fa-tag mr-1"></i>{{ product.category.friendly_name }}
                             </a>
                         </p>
                         {% endif %}
-                        {# Product Rating #}
-                        {% if product.rating %}
-                            <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.rating }} / 5</small>
-                        {% else %}
-                            <small class="text-muted">No Rating</small>
-                        {% endif %}
                         {# Product Admin #}
                         {% if request.user.is_superuser %}
-                            <small class="ml-3">
+                            <small>
                                 <a href="{% url 'update_product' product.id  %}" class="btn btn-info btn-sm rounded-0">Edit</a>
                                 {# Delete Confirm Modal Trigger #}
                                 <button type="button" class="btn btn-danger btn-sm rounded-0" data-toggle="modal" data-target="#delete-confirmation">

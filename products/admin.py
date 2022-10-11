@@ -13,7 +13,7 @@ def make_inactive(modeladmin, request, queryset):
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'category', 'stock_qty', 'rating', 'active')
+    list_display = ('name', 'category', 'stock_qty', 'active')
     ordering = ('name',)
     actions = [make_active, make_inactive]
 
