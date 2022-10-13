@@ -54,13 +54,13 @@
       <form method="post" action="{% url 'account_email' %}" class="add_email">
           {% csrf_token %}
           {{ form|crispy }}
-          <a href="{% url 'profile' %}" class="btn btn-dark rounded-0">
+          <a href="{% url 'profile' %}" class="btn btn-light border-dark rounded-0">
             <span class="icon">
               <i class="fa fa-angle-left"></i>
             </span>
             <span>Profile</span>
           </a>
-          <button class="btn btn-light border-dark rounded-0" name="action_add" type="submit">{% trans "Add E-mail" %}</button>
+          <button class="btn btn-dark rounded-0" name="action_add" type="submit">{% trans "Add E-mail" %}</button>
       </form>
 </div>
 
