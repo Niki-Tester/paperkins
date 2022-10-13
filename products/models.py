@@ -42,7 +42,6 @@ def _delete_file(instance):
 @receiver(post_delete, sender=Product)
 def _post_delete_receiver(sender, instance, **kwargs):
     if instance.image:
-        print(instance.image)
         _delete_file(instance)
 
 
