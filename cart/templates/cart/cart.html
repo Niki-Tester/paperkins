@@ -87,5 +87,7 @@
 {% block postload_js %}
     {{ block.super }}
     {% include 'products/includes/quantity_input.html' %}
+    {% comment %} csrftoken defined here for use in cartUpdateDelete.js {% endcomment %}
+    <script type="text/javascript"> const csrftoken = "{{ csrf_token }}" </script>
     <script src="{% static 'cart/js/cartUpdateDelete.js' %}"></script>
 {% endblock postload_js %}

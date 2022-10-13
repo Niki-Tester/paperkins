@@ -8,7 +8,6 @@ $('.update-link').click(e => {
 // Remove item and reload on Click
 $('.remove-link').click(e => {
     e.preventDefault()
-    const csrftoken = "{{ csrf_token }}"
     const itemId = $(e.currentTarget).attr('id').split('remove_')[1];
     const customMessage = $(e.currentTarget).data('customMessage');
     const url = `remove/${itemId}`
