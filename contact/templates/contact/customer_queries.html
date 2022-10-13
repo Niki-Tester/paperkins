@@ -90,13 +90,13 @@
                             {% if q.response_message %}
                                 <p class="font-weight-bold">Response:</p>
                                 <p class="pre-wrap">{{ q.response_message }}</p>
-                                <a href="{% url 'remove_query' q.id %}" class="btn btn-danger">Delete</a>
+                                <a href="{% url 'remove_query' q.id %}" class="btn btn-danger rounded-0">Delete</a>
                             {% else %}
                                 <form action="{% url 'send_response' q.id %}" method="POST">
                                     {% csrf_token %}
                                     {{ form|crispy }}
-                                    <a href="{% url 'remove_query' q.id %}" class="btn btn-danger">Delete</a>
-                                    <button type="submit" class="btn btn-success float-right">Send Response</button>
+                                    <a href="{% url 'remove_query' q.id %}" class="btn btn-danger rounded-0">Delete</a>
+                                    <button type="submit" class="btn btn-success float-right rounded-0">Send Response</button>
                                 </form>
                             {% endif %}
                         </div>
