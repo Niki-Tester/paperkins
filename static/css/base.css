@@ -111,12 +111,12 @@ a.category-badge>span.badge:hover {
     z-index: 999;
 }
 
-.qty_input {
+.qty-input {
     text-align: center;
 }
 
-.qty_input::-webkit-outer-spin-button,
-.qty_input::-webkit-inner-spin-button {
+.qty-input::-webkit-outer-spin-button,
+.qty-input::-webkit-inner-spin-button {
     -webkit-appearance: none;
 }
 

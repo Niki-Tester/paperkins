@@ -12,9 +12,9 @@
                 </button>
             </div>
             {# Quantity #}
-            <input class="form-control form-control-sm qty_input" type="number"
+            <input class="form-control form-control-sm qty-input" type="number"
                 name="quantity" value="{{item.quantity}}" min="1" max="{{item.product.stock_qty}}"
-                    data-item_id="{{ item.item_id }}" id="id_qty_{{ item.item_id }}">
+                    data-item-id="{{ item.item_id }}" id="id_qty_{{ item.item_id }}">
             {# Quantity Increment #}
             <div class="input-group-append">
                 <button class="increment-qty btn btn-sm btn-dark rounded-0"
