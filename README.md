@@ -154,7 +154,7 @@ The aim behind this project is to demonstrate my skills in developing a Full Sta
 
   ![ProductDetailsPage](/doc/images/screencapture-products-details-page.png)
 
-  When the user click on the "Add to cart" button the product and quantity is added to the cart, and a notification is displayed to confirm this.
+  When the user clicks on the "Add to cart" button the product and quantity is added to the cart, and a notification is displayed to confirm this.
 
   ![CartNotification](/doc/images/screencapture-cart-notification.png)
 
@@ -167,7 +167,7 @@ The aim behind this project is to demonstrate my skills in developing a Full Sta
 
   When clicked this will take the user to a page dedicated displaying the products the user has added to the cart. The total cost of each product in the cart, along with the delivery charge and grand total for the order.
   
-  If no items have been added to the card, a message will be displayed to the user, prompting them to start shopping.
+  If no items have been added to the cart, a message will be displayed to the user, prompting them to start shopping.
 
   The cart page will give the user a break down of all the products they have added to the cart, along with the current quantity they wish to order, with the ability to change the order quantity, or remove a product from the cart entirely.
 
@@ -225,9 +225,9 @@ The aim behind this project is to demonstrate my skills in developing a Full Sta
 
   It will provide the user a place to update their default delivery information, view order history, change their password, and update their email addresses.
 
-  If a user has not created an order, they will be informed this under the Order History heading.
+  If a user has not created an order, they will be informed of this under the Order History heading.
 
-  If a user has previously created an order / made a purchase, they will see a list of all previous orders in a list, and clicking on the order number will direct the user to an order summary.
+  If a user has previously created an order / made a purchase, they will see a list of all previous orders, and clicking on the order number will direct the user to an order summary.
 
   ![ProfilePage](/doc/images/screencapture-profile.png)
   
