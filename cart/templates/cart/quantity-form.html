@@ -14,7 +14,7 @@
             {# Quantity #}
             <input class="form-control form-control-sm qty-input" type="number"
                 name="quantity" value="{{item.quantity}}" min="1" max="{{item.product.stock_qty}}"
-                    data-item-id="{{ item.item_id }}" id="id_qty_{{ item.item_id }}">
+                    data-item-id="{{ item.item_id }}">
             {# Quantity Increment #}
             <div class="input-group-append">
                 <button class="increment-qty btn btn-sm btn-dark rounded-0"
@@ -34,8 +34,5 @@
 <a href="" class="update-link text-info small">Update</a>
 {# Remove Item Link #}
 <a href="" class="remove-link text-danger small float-right" id="remove_{{item.item_id}}" {% if item.custom_message or item.custom_message == '' %}data-custom-message="{{item.custom_message}}{% endif %}">Remove</a>
-<div class="col-12">
-    <p id="quantity_message_{{item.product.id}}"></p>
-</div>
 
     

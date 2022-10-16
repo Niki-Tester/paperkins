@@ -29,6 +29,7 @@
                     <div class="row">
                         <div class="col-12 text-center">
                             {% include 'cart/checkout-buttons.html' %}
+                            <p id="order-limit-message" class="small text-danger font-weight-bold text-center mt-1"></p>
                             <p class="text-muted mb-2 mt-md-3">A summary of your order is below</p>
                         </div>
                         <div class="col-12">
@@ -86,8 +87,10 @@
 
 {% block postload_js %}
     {{ block.super }}
-    {% include 'products/includes/quantity_input.html' %}
+    {% include 'cart/includes/quantity_input.html' %}
     {% comment %} csrftoken defined here for use in cartUpdateDelete.js {% endcomment %}
     <script type="text/javascript"> const csrftoken = "{{ csrf_token }}" </script>
     <script src="{% static 'cart/js/cartUpdateDelete.js' %}"></script>
+    <script src="{% static 'cart/js/cartQuantityControls.js' %}"></script>
+    <script src="{% static 'cart/js/cartStockCheck.js' %}"></script>
 {% endblock postload_js %}
