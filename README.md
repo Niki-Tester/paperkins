@@ -374,5 +374,5 @@ The aim behind this project is to demonstrate my skills in developing a Full Sta
 
 - Tutor support at Code Institute for their support.
 
-# **Link to deployed website**:
+# Link to deployed website:
 [Heroku - Paperkins](https://paperkins.herokuapp.com/)
