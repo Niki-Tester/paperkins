@@ -8,7 +8,6 @@ This will remain fixed to the top, even when you scroll through the readme.
 
 ![TOCImage](doc/images/TOC.png)
 
-
 ## **Project Overview**
 
 The aim behind this project is to demonstrate my skills in developing a Full Stack Application using the Django framework. I have chosen to create a fully functioning online e-commerce application focused around the sale of handcrafted gifts, where users will be able to browse available products, purchase, and review previous orders.
@@ -364,9 +363,10 @@ The aim behind this project is to demonstrate my skills in developing a Full Sta
 ### Media
 
 - Main Background image from [Unsplash.com](https://unsplash.com/)
-  - Source: [KatieRainbow](https://unsplash.com/@katierainbow) | [Green Yellow and Pink Striped Textile](https://unsplash.com/photos/DjGHuzUh_84)
+  - Source: [KatieRainbow](https://unsplash.com/@katierainbow) | [Image](https://unsplash.com/photos/DjGHuzUh_84)
 
-- Dynamic Game Backgrounds are licensed to the relevant game publisher, and are sourced from the [IGDB API](https://api-docs.igdb.com/#about)
+- Product images a from [Paperkins.co.uk](https://paperkins.co.uk)
+  - With permission from the site owner, and good friend Jess.
 
 ### Acknowledgements
 
