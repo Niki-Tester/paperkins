@@ -136,7 +136,7 @@ The aim behind this project is to demonstrate my skills in developing a Full Sta
 
   ![ProductsPage](/doc/images/screencapture-productspage.png)
 
-  There will be also be a footer at the bottom the page, which will appear on each page except the home page. Giving the user a consistent location to find further company information, social links, and ability to contact the site owner / sign up to a newsletter.
+  There will also be a footer at the bottom the page, which will appear on each page except the home page. Giving the user a consistent location to find further company information, social links, and ability to contact the site owner / sign up to a newsletter.
 
   ![Footer](/doc/images/screencapture-footer.png)
   
@@ -297,6 +297,13 @@ The aim behind this project is to demonstrate my skills in developing a Full Sta
 
   1. [Stripe](https://en.wikipedia.org/wiki/Stripe,_Inc.):
     Stripe was used for payment processing.
+
+---
+
+# **Testing**
+  Testing has been documented separately, please see the Testing documentation linked below:
+
+- [Testing Documentation](doc/TESTING.md)
 
 ---
 
