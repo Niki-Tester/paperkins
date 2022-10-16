@@ -1,4 +1,4 @@
-Hi {{ query.name }}
+Hi {{ query.contact_name }}
 
 Thank you for contacting us.
 

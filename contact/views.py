@@ -51,9 +51,9 @@ def send_response(request, id):
             })
 
         send_mail(subject, message, settings.DEFAULT_FROM_EMAIL,
-                  [query.email])
+                  [query.contact_email])
         messages.success(
-            request, f'Response sent successfully to {query.email}')
+            request, f'Response sent successfully to {query.contact_email}')
     return redirect(reverse('customer_queries'))
 
 
@@ -78,7 +78,7 @@ def contact_request(request):
             })
 
         send_mail(subject, message, settings.DEFAULT_FROM_EMAIL,
-                  [contact_form.cleaned_data['email']])
+                  [contact_form.cleaned_data['contact_email']])
         messages.success(request, 'Your message was successfully sent')
     else:
         messages.error(request, 'There was an error sending your message, '
