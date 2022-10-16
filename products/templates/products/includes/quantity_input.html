@@ -6,10 +6,10 @@
         const maxAvailable = parseInt($('#stock-qty').val())
         const minusDisabled = currentValue < parseInt($(`#id_qty_${itemId}`)[0].min) + 1;
         const plusDisabled = currentValue >= parseInt($(`#id_qty_${itemId}`)[0].max);
-        const addToBagDisabled = currentValue > maxAvailable;
+        const addToCartDisabled = currentValue > maxAvailable;
         $(`#decrement-qty_${itemId}`).prop('disabled', minusDisabled);
         $(`#increment-qty_${itemId}`).prop('disabled', plusDisabled);
-        $(`#addToCartButton`).prop('disabled', addToBagDisabled);
+        $(`#addToCartButton`).prop('disabled', addToCartDisabled);
     }
 
     // Display info message if quantity input value is equal to stock_qty value
