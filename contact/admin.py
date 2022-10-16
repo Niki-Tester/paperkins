@@ -3,11 +3,12 @@ from .models import Contact
 
 
 class ContactAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email', 'query', 'date_time', 'response_sent')
+    list_display = ('contact_name', 'contact_email',
+                    'query', 'date_time', 'response_sent')
 
     readonly_fields = (
-        'name',
-        'email',
+        'contact_name',
+        'contact_email',
         'query',
         'date_time',
         'message',

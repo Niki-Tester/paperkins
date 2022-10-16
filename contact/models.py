@@ -13,8 +13,8 @@ class Contact(models.Model):
         ('other', 'Other'),
     )
 
-    name = models.CharField(max_length=256, null=False, blank=False)
-    email = models.EmailField(max_length=256, null=False, blank=False)
+    contact_name = models.CharField(max_length=256, null=False, blank=False)
+    contact_email = models.EmailField(max_length=256, null=False, blank=False)
 
     query = models.CharField(
         choices=CHOICES, max_length=20, null=False, blank=False)
