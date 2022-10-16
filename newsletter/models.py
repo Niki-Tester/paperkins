@@ -3,12 +3,12 @@ from django.db import models
 
 
 class Newsletter(models.Model):
-    name = models.CharField(
+    newsletter_name = models.CharField(
         max_length=256,
         null=False,
         blank=False,)
 
-    email = models.EmailField(
+    newsletter_email = models.EmailField(
         max_length=256,
         null=False,
         blank=False,

@@ -5,15 +5,15 @@ from .models import Newsletter
 class NewsletterForm(forms.ModelForm):
     class Meta:
         model = Newsletter
-        fields = ('name', 'email',)
+        fields = ('newsletter_name', 'newsletter_email',)
 
     def __init__(self, *args, **kwargs):
         """ Add placeholders and classes, remove auto-generated label """
         super().__init__(*args, **kwargs)
 
         placeholders = {
-            'name': 'Your Name',
-            'email': 'Email Address',
+            'newsletter_name': 'Your Name',
+            'newsletter_email': 'Email Address',
         }
 
         for field in self.fields:
