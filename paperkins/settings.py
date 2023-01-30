@@ -16,6 +16,8 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+if os.path.exists('env.py'):
+	import env
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -24,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'DEVELOPMENT_ENV' in os.environ
+DEBUG = 'DEV' in os.environ
 
 ALLOWED_HOSTS = ['paperkins.herokuapp.com', 'localhost']
 
@@ -61,7 +63,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 SITE_ID = 1
 
-if 'DEVELOPMENT_ENV' in os.environ:
+if 'DEV' in os.environ:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
     DEFAULT_FROM_EMAIL = 'paperkins.shop@gmail.com'
 else:
@@ -141,7 +143,7 @@ WSGI_APPLICATION = 'paperkins.wsgi.application'
 
 CONNECT_DEPLOYED_DB = False
 
-if 'DEVELOPMENT_ENV' not in os.environ or CONNECT_DEPLOYED_DB:
+if 'DEV' not in os.environ or CONNECT_DEPLOYED_DB:
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
