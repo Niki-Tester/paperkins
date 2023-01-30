@@ -21,7 +21,7 @@ class Newsletter(models.Model):
         editable=False)
 
     def __str__(self):
-        return self.email
+        return self.newsletter_email
 
     def _generate_uuid(self):
         """ Generate a random & unique number using UUID """
