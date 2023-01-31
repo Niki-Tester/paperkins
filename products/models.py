@@ -4,9 +4,8 @@ from django.db.models.signals import post_delete, post_init, post_save
 
 
 class Category(models.Model):
-
     class Meta:
-        verbose_name_plural = 'Catagories'
+        verbose_name_plural = "Catagories"
 
     name = models.CharField(max_length=254)
     friendly_name = models.CharField(max_length=254, null=True, blank=True)
@@ -20,7 +19,8 @@ class Category(models.Model):
 
 class Product(models.Model):
     category = models.ForeignKey(
-        'Category', null=True, blank=True, on_delete=models.SET_NULL)
+        "Category", null=True, blank=True, on_delete=models.SET_NULL
+    )
     name = models.CharField(max_length=254)
     description = models.TextField()
     price = models.DecimalField(max_digits=6, decimal_places=2)
@@ -35,7 +35,7 @@ class Product(models.Model):
 
 
 def _delete_file(instance):
-    """ Deletes file from filesystem. """
+    """Deletes file from filesystem."""
     instance.image.delete(save=False)
 
 
@@ -53,6 +53,6 @@ def backup_image_path(sender, instance, **kwargs):
 
 @receiver(post_save, sender=Product)
 def delete_old_image(sender, instance, **kwargs):
-    if hasattr(instance, '_current_image_file'):
+    if hasattr(instance, "_current_image_file"):
         if instance._current_image_file != instance.image:
             instance._current_image_file.delete(save=False)

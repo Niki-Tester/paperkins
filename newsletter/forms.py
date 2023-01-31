@@ -5,24 +5,28 @@ from .models import Newsletter
 class NewsletterForm(forms.ModelForm):
     class Meta:
         model = Newsletter
-        fields = ('newsletter_name', 'newsletter_email',)
+        fields = (
+            "newsletter_name",
+            "newsletter_email",
+        )
 
     def __init__(self, *args, **kwargs):
-        """ Add placeholders and classes, remove auto-generated label """
+        """Add placeholders and classes, remove auto-generated label"""
         super().__init__(*args, **kwargs)
 
         placeholders = {
-            'newsletter_name': 'Your Name',
-            'newsletter_email': 'Email Address',
+            "newsletter_name": "Your Name",
+            "newsletter_email": "Email Address",
         }
 
         for field in self.fields:
 
             if self.fields[field].required:
-                placeholder = f'{placeholders[field]} *'
+                placeholder = f"{placeholders[field]} *"
             else:
                 placeholder = placeholders[field]
-            self.fields[field].widget.attrs['placeholder'] = placeholder
-            self.fields[field].widget.attrs['class'] = 'border-dark '\
-                'rounded-0 form-control-sm'
+            self.fields[field].widget.attrs["placeholder"] = placeholder
+            self.fields[field].widget.attrs["class"] = (
+                "border-dark " "rounded-0 form-control-sm"
+            )
             self.fields[field].label = False
