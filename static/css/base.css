@@ -6,7 +6,7 @@ html {
 }
 
 body {
-    background: url('/media/katie-rainbow-DjGHuzUh_84-unsplash.webp') no-repeat center center fixed;
+    background: url('/static/images/katie-rainbow-DjGHuzUh_84-unsplash.webp') no-repeat center center fixed;
     background-size: cover;
     height: 100%;
     top: 148px;
