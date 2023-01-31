@@ -23,7 +23,7 @@
                 <div class="mt-3">
                     {% if product.image %}
                         <a href="{{ product.image.url }}" target="_blank">
-                            <img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
+                            <img class="img-fluid w-100" src="{{ product.image.url }}" alt="{{ product.name }}">
                         </a>
                     {% else %}
                         <img class="img-fluid" src="{% static '/images/no-image.webp' %}" alt="{{ product.name }}">
