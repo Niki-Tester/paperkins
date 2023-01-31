@@ -101,14 +101,11 @@ def remove_cart_item(request, item_id):
         product = get_object_or_404(Product, pk=item_id)
         custom_message = None
         if "custom_message" in request.POST:
-            if request.POST.get("custom_message") == "":
-                custom_message = None
-            else:
-                custom_message = request.POST.get("custom_message")
+            custom_message = request.POST.get("custom_message")
 
         cart = request.session.get("cart", {})
 
-        if custom_message:
+        if custom_message or custom_message == "":
             del cart[item_id]["items_by_message"][custom_message]
         else:
             del cart[item_id]
