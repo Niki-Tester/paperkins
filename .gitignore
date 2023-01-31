@@ -8,7 +8,7 @@ node_modules/
 .github/
 cloudinary_python.txt
 /*.sqlite3
-.vscode/*
+.vscode
 .venv
 media/
 *.toml
