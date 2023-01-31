@@ -8,42 +8,42 @@ from .forms import UserProfileForm
 
 @login_required
 def profile(request):
-    """ A view for rendering user profiles """
+    """A view for rendering user profiles"""
     profile = get_object_or_404(UserProfile, user=request.user)
 
-    if request.method == 'POST':
+    if request.method == "POST":
         form = UserProfileForm(request.POST, instance=profile)
         if form.is_valid():
             form.save()
-            messages.success(request, 'You default delivery information '
-                             'has been updated')
+            messages.success(
+                request, "You default delivery information " "has been updated"
+            )
         else:
             form.delete()
-            messages.error(request, 'Error saving delivery information, '
-                           'please check your details and try again')
-            return redirect(reverse('profile'))
+            messages.error(
+                request,
+                "Error saving delivery information, "
+                "please check your details and try again",
+            )
+            return redirect(reverse("profile"))
 
     form = UserProfileForm(instance=profile)
     orders = profile.orders.all()
-    context = {
-        'orders': orders,
-        'form': form,
-        'profile': profile
-    }
-    return render(request, 'profiles/profile.html', context)
+    context = {"orders": orders, "form": form, "profile": profile}
+    return render(request, "profiles/profile.html", context)
 
 
 def order_history(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
 
-    messages.info(request,
-                  'This is a past confirmation for '
-                  f'order number: {order.order_number}. '
-                  f'A confirmation email was sent to: {order.email} '
-                  f'on {order.date}')
-    template = 'profiles/previous_order.html'
-    context = {
-        'order': order
-    }
+    messages.info(
+        request,
+        "This is a past confirmation for "
+        f"order number: {order.order_number}. "
+        f"A confirmation email was sent to: {order.email} "
+        f"on {order.date}",
+    )
+    template = "profiles/previous_order.html"
+    context = {"order": order}
 
     return render(request, template, context)
