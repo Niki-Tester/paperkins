@@ -84,6 +84,7 @@ class Order(models.Model):
         """
         if not self.order_number:
             self.order_number = self._generate_order_number()
+        print(self)
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -117,9 +118,17 @@ class OrderLineItem(models.Model):
     def save(self, *args, **kwargs):
         """
         Override the original save method to set lineitem total
-        and update the order total
+        and update the order total.
+
+        Update product.stock_qty
         """
         self.lineitem_total = self.product.price * self.quantity
+        try:
+            product = Product.objects.get(id=self.product.id)
+            product.stock_qty -= self.quantity
+            product.save()
+        except Exception as e:
+            print(e)
         super().save(*args, **kwargs)
 
     def __str__(self):
