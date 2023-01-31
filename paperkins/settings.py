@@ -139,7 +139,7 @@ WSGI_APPLICATION = "paperkins.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-CONNECT_DEPLOYED_DB = False
+CONNECT_DEPLOYED_DB = os.environ.get("CONNECT_DEPLOYED_DB", False)
 
 if "DEV" not in os.environ or CONNECT_DEPLOYED_DB:
     DATABASES = {
