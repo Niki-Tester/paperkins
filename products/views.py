@@ -3,14 +3,14 @@ from django.db.models import Q
 from django.db.models.functions import Lower
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Product, Category
+from .models import Product, Category, Image
 from .forms import ProductForm
 
 
 def all_products(request):
     """A view to show all products, including sorting and search queries"""
 
-    products = Product.objects.filter(active=True)
+    products = Product.objects.filter(active=True).prefetch_related("images")
     query = None
     categories = None
     sort = None
@@ -65,9 +65,9 @@ def product_details(request, product_id):
     """A view to show individual product details"""
 
     product = get_object_or_404(Product, pk=product_id)
-    context = {
-        "product": product,
-    }
+    images = Image.objects.filter(product=product)
+
+    context = {"product": product, "images": images}
 
     return render(request, "products/product_details.html", context)
 
@@ -78,8 +78,12 @@ def add_product(request):
         return redirect(reverse("home"))
     if request.method == "POST":
         form = ProductForm(request.POST, request.FILES)
+
         if form.is_valid():
+            images = request.FILES.getlist("image")
             product = form.save()
+            for image in images:
+                Image.objects.create(product=product, file_name=image)
             messages.success(request, f"Successfully added {product.name}")
             return redirect(reverse("product_details", args=[product.id]))
         else:
@@ -137,7 +141,6 @@ def update_product(request, product_id):
             if form.errors:
                 messages.error(request, form.errors.as_text())
     else:
-
         form = ProductForm(instance=product)
         messages.info(request, f"You are updating {product.name}")
 

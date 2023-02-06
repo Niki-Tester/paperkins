@@ -225,6 +225,12 @@ footer {
     color: #aab7c4;
 }
 
+/* Product Details */
+.carousel-control-prev i,
+.carousel-control-next i {
+    text-shadow: 1px 1px 3px black
+}
+
 /* Product Form */
 .btn-file {
     position: relative;

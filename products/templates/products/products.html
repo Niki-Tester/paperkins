@@ -61,8 +61,17 @@
                         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                             <div class="card h-100 border-0">
                                 <a href="{% url 'product_details' product.id %}">
-                                    <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static '/images/no-image.webp' %}{% endif %}" 
+                                    {% if product.images.all %}
+                                        {% for image in product.images.all %}
+                                            {% if image.default %}
+                                                <img src="{{ MEDIA_URL }}{{image.file_name}}" 
+                                                alt="{{ product.name }}" class="card-img-top img-fluid" height="255" width="255">
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% else %}
+                                        <img src="{% static '/images/no-image.webp' %}" 
                                         alt="{{ product.name }}" class="card-img-top img-fluid" height="255" width="255">
+                                    {% endif %}    
                                 </a>
                                 <div class="card-body pb-1 col-12">
                                     <p class="mb-0 logo-font">{{ product.name|title }}</p>
