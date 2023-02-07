@@ -12,4 +12,3 @@ cloudinary_python.txt
 .venv
 media/
 *.toml
-*/migrations
