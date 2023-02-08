@@ -258,6 +258,25 @@ footer {
     border-radius: 0;
 }
 
+.image-preview{
+    position: relative;
+    /* text-align: center; */
+}
+
+.image-preview img{
+    border: #aab7c4 solid 3px !important;
+}
+
+.image-preview img:hover{
+    cursor: pointer;
+    border-color: #27c7fc !important;
+    transition: border-color ease-in-out 200ms;
+}
+
+#default-image {
+    border-color: #00ff3c !important;
+}
+
 /* ------------- Media Queries */
 
 /* Larger container on xl screens */
