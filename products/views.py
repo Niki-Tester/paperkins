@@ -78,12 +78,18 @@ def add_product(request):
         return redirect(reverse("home"))
     if request.method == "POST":
         form = ProductForm(request.POST, request.FILES)
-
         if form.is_valid():
             images = request.FILES.getlist("image")
             product = form.save()
             for image in images:
-                Image.objects.create(product=product, file_name=image)
+                if image.name == request.POST.get("default-image-input"):
+                    Image.objects.create(
+                        product=product, file_name=image, default=True
+                    )
+                else:
+                    Image.objects.create(
+                        product=product, file_name=image, default=False
+                    )
             messages.success(request, f"Successfully added {product.name}")
             return redirect(reverse("product_details", args=[product.id]))
         else:

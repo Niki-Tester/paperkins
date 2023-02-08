@@ -1,4 +1,5 @@
 const imagesInput = document.getElementById('new-image');
+const hiddenInput = document.getElementById('default-image-input')
 
 imagesInput.addEventListener('change', e =>{
   if (e.target.files.length <= 0) document.getElementById('filename').innerText = '';
@@ -9,6 +10,7 @@ imagesInput.addEventListener('change', e =>{
   const imageFiles = [];
 
   for (let i = 0; i < e.target.files.length; i++) {
+    e.target.files[i].id ='test'
     const file = e.target.files[i];
     imageFiles.push(file[i])
     const div = document.createElement('div')
@@ -27,6 +29,7 @@ imagesInput.addEventListener('change', e =>{
     if(e.target.files.length == 1) {
       img.setAttribute('id', 'default-image');
       document.getElementById('filename').innerText = 'Default Image: ' + img.dataset.fileName;
+      hiddenInput.setAttribute('value', img.dataset.fileName)
     } else { 
       img.addEventListener('click', e =>{
         const previewImages = document.getElementsByClassName('preview-image')
@@ -36,6 +39,7 @@ imagesInput.addEventListener('change', e =>{
         e.currentTarget.id = 'default-image';
         
         document.getElementById('filename').innerText = 'Default Image: ' + e.currentTarget.dataset.fileName;
+        hiddenInput.setAttribute('value', e.currentTarget.dataset.fileName)
       })
     }
   }
