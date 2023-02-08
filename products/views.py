@@ -82,7 +82,7 @@ def add_product(request):
             images = request.FILES.getlist("image")
             product = form.save()
             for image in images:
-                if image.name == request.POST.get("default-image-input"):
+                if image.name == request.POST.get("primary-image-input"):
                     Image.objects.create(
                         product=product, file_name=image, default=True
                     )

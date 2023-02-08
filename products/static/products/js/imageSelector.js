@@ -1,46 +1,81 @@
-const imagesInput = document.getElementById('new-image');
-const hiddenInput = document.getElementById('default-image-input')
+const fileName = document.getElementById('file-name');
+const imageSelector = document.getElementById('image-selector');
+const form = document.getElementById('add-product-form');
+const hiddenInput = document.getElementById('primary-image-input');
 
-imagesInput.addEventListener('change', e =>{
-  if (e.target.files.length <= 0) document.getElementById('filename').innerText = '';
+document.getElementById('new-image').addEventListener('change', displayThumbnails);
+form.addEventListener('submit', formSubmit);
 
-  const imageSelector = document.getElementById('image-selector')
-  imageSelector.innerHTML = '';
+function displayThumbnails(e) {
+	const imageFiles = e.target.files;
 
-  const imageFiles = [];
+	setFileNameText('');
+	setImageSelectorHTML('');
 
-  for (let i = 0; i < e.target.files.length; i++) {
-    e.target.files[i].id ='test'
-    const file = e.target.files[i];
-    imageFiles.push(file[i])
-    const div = document.createElement('div')
-    div.setAttribute('class', 'col-sm image-preview')
-    
-    const img = new Image();
-    img.setAttribute('height', 139);
-    img.setAttribute('width', 139);
-    img.setAttribute('class', 'mt-1 border border-light preview-image');
-    img.src = URL.createObjectURL(file);
-    img.setAttribute('data-file-name', file.name)
+	imageFiles.length <= 0 ? (fileName.innerText = '') : createImageSelectorElements(imageFiles);
+}
 
-    div.appendChild(img);
-    imageSelector.appendChild(div);
+const createImageSelectorElements = imageFiles => {
+	for (const file of imageFiles) {
+		const div = createDivElement();
+		const img = createImageElement(file);
 
-    if(e.target.files.length == 1) {
-      img.setAttribute('id', 'default-image');
-      document.getElementById('filename').innerText = 'Default Image: ' + img.dataset.fileName;
-      hiddenInput.setAttribute('value', img.dataset.fileName)
-    } else { 
-      img.addEventListener('click', e =>{
-        const previewImages = document.getElementsByClassName('preview-image')
-        for (let i = 0; i < previewImages.length; i++) {
-          previewImages[i].removeAttribute('id');
-        }
-        e.currentTarget.id = 'default-image';
-        
-        document.getElementById('filename').innerText = 'Default Image: ' + e.currentTarget.dataset.fileName;
-        hiddenInput.setAttribute('value', e.currentTarget.dataset.fileName)
-      })
-    }
-  }
-})
+		div.appendChild(img);
+		imageSelector.appendChild(div);
+
+		imageFiles.length == 1 ? setSingleImageAttributes(img, file) : addImageSelectionListener(img);
+	}
+};
+
+const setFileNameText = text => {
+	document.getElementById('filename').innerText = text;
+};
+
+const setImageSelectorHTML = html => {
+	imageSelector.html = html;
+};
+
+const createImageElement = file => {
+	const img = new Image();
+	img.setAttribute('height', 139);
+	img.setAttribute('width', 139);
+	img.setAttribute('class', 'mt-1 border border-light image-thumbnail');
+	img.src = URL.createObjectURL(file);
+	img.setAttribute('data-file-name', file.name);
+	return img;
+};
+
+const createDivElement = () => {
+	const div = document.createElement('div');
+	div.setAttribute('class', 'col-sm image-preview');
+	return div;
+};
+
+const setSingleImageAttributes = (img, file) => {
+	img.setAttribute('id', 'primary-image');
+	setFileNameText('Default Image: ' + file.name);
+	hiddenInput.setAttribute('value', file.name);
+};
+
+const addImageSelectionListener = img => {
+	img.addEventListener('click', e => {
+		const imageThumbnail = document.getElementsByClassName('image-thumbnail');
+		for (let i = 0; i < imageThumbnail.length; i++) {
+			imageThumbnail[i].removeAttribute('id');
+		}
+		e.currentTarget.id = 'primary-image';
+
+		setFileNameText('Default Image: ' + e.currentTarget.dataset.fileName);
+		hiddenInput.setAttribute('value', e.currentTarget.dataset.fileName);
+	});
+};
+
+function formSubmit(e) {
+	form.reportValidity();
+	if (!document.getElementById('primary-image')) {
+		e.preventDefault();
+		setFileNameText('You need to select your primary image, before adding your new product');
+		return;
+	}
+	form.submit();
+}
