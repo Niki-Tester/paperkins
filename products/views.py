@@ -1,10 +1,18 @@
-from django.shortcuts import render, get_object_or_404, redirect, reverse
+from django.shortcuts import (
+    render,
+    get_object_or_404,
+    redirect,
+    reverse,
+    HttpResponse,
+)
 from django.db.models import Q
 from django.db.models.functions import Lower
 from django.contrib import messages
+from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from .models import Product, Category, Image
 from .forms import ProductForm
+import json
 
 
 def all_products(request):
@@ -132,6 +140,7 @@ def update_product(request, product_id):
         return redirect(reverse("products"))
 
     product = get_object_or_404(Product, pk=product_id)
+    images = Image.objects.filter(product=product)
 
     if request.method == "POST":
         form = ProductForm(request.POST, request.FILES, instance=product)
@@ -154,6 +163,26 @@ def update_product(request, product_id):
     context = {
         "form": form,
         "product": product,
+        "images": images,
     }
 
     return render(request, template, context)
+
+
+@csrf_exempt
+@login_required
+def remove_image(request):
+    if not request.user.is_superuser or request.method != "DELETE":
+        return HttpResponse(status=403)
+
+    image_id = json.loads(request.body)["image_id"]
+    image = get_object_or_404(Image, pk=image_id)
+
+    if image.default:
+        return HttpResponse(status=409)
+
+    try:
+        image.delete()
+    except Exception as e:
+        return HttpResponse(500)
+    return HttpResponse(status=200)

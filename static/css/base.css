@@ -257,13 +257,17 @@ footer {
 	border-radius: 0;
 }
 
-.image-preview {
-	position: relative;
-	/* text-align: center; */
+#current-images {
+	background-color: #fdfdfd;
+	padding-top: 1rem;
+	width: 100%;
+	margin: 0 auto;
+	border: 3px dotted darkgrey;
 }
 
 .image-preview img {
 	border: #aab7c4 solid 3px !important;
+	width: 100%;
 }
 
 .image-preview img:hover {
@@ -274,6 +278,32 @@ footer {
 
 #primary-image {
 	border-color: #00ff3c !important;
+}
+
+.remove-icon {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0.25rem;
+	margin-top: 0.25rem;
+	cursor: pointer;
+	transition: color ease-in-out 250ms, background-color ease-in-out 400ms;
+	margin-bottom: 1rem;
+}
+
+.remove-icon:hover {
+	color: white !important;
+	background-color: #dc3545;
+}
+
+.remove-icon i {
+	font-size: 1.5rem;
+	margin-right: 0.25rem;
+	pointer-events: none;
+}
+
+.remove-icon span {
+	pointer-events: none;
 }
 
 /* ------------- Media Queries */

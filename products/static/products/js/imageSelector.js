@@ -1,6 +1,6 @@
 const fileName = document.getElementById('file-name');
 const imageSelector = document.getElementById('image-selector');
-const form = document.getElementById('add-product-form');
+const form = document.getElementById('product-form');
 const hiddenInput = document.getElementById('primary-image-input');
 
 document.getElementById('new-image').addEventListener('change', displayThumbnails);
