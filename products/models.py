@@ -24,8 +24,6 @@ class Product(models.Model):
     name = models.CharField(max_length=254)
     description = models.TextField()
     price = models.DecimalField(max_digits=6, decimal_places=2)
-    image_url = models.URLField(max_length=1024, null=True, blank=True)
-    image = models.ImageField(null=True, blank=True)
     stock_qty = models.IntegerField(default=0)
     has_custom_message = models.BooleanField(default=False)
     active = models.BooleanField(default=True)
@@ -34,25 +32,14 @@ class Product(models.Model):
         return self.name
 
 
-def _delete_file(instance):
-    """Deletes file from filesystem."""
-    instance.image.delete(save=False)
+class Image(models.Model):
+    file_name = models.ImageField(null=True, blank=True)
+    default = models.BooleanField(default=False)
+    product = models.ForeignKey(
+        to=Product,
+        on_delete=models.CASCADE,
+        related_name="images",
+    )
 
-
-@receiver(post_delete, sender=Product)
-def _post_delete_receiver(sender, instance, **kwargs):
-    if instance.image:
-        _delete_file(instance)
-
-
-@receiver(post_init, sender=Product)
-def backup_image_path(sender, instance, **kwargs):
-    if instance.image:
-        instance._current_image_file = instance.image
-
-
-@receiver(post_save, sender=Product)
-def delete_old_image(sender, instance, **kwargs):
-    if hasattr(instance, "_current_image_file"):
-        if instance._current_image_file != instance.image:
-            instance._current_image_file.delete(save=False)
+    def __str__(self):
+        return self.file_name.name

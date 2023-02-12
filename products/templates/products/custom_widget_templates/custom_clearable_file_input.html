@@ -1,3 +1,4 @@
+{% load static %}
 {% if widget.is_initial %}
     <p>{{ widget.initial_text }}:</p>
     <a href="{{ widget.value.url }}">
@@ -13,8 +14,5 @@
     {{ widget.input_text }}
 {% endif %}
 <span class="btn btn-dark rounded-0 btn-file">
-    Select Image <input id="new-image" aria-label="Add new image to product" type="{{ widget.type }}" name="{{ widget.name }}"{% include "django/forms/widgets/attrs.html" %}>
+    Add Images <input id="new-image" aria-label="Add new images to product" type="{{ widget.type }}" name="{{ widget.name }}"{% include "django/forms/widgets/attrs.html" %}>
 </span>
-<strong>
-    <p class="text-danger" id="filename"></p>
-</strong>

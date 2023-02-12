@@ -22,7 +22,7 @@
         </div>
         <div class="row">
             <div class="col-12 col-md-8 offset-md-2 bg-white p-4">
-                <form action="{% url 'update_product' product.id %}" class="form mb-2" method="post" enctype='multipart/form-data'>
+                <form id="product-form" method="POST" action="{% url 'update_product' product.id %}" class="form mb-2" enctype='multipart/form-data'>
                     {% csrf_token %}
                     {% for field in form %}
                         {% if field.name != 'image' %}
@@ -31,7 +31,34 @@
                             {{ field }}
                         {% endif %}
                     {% endfor %}
+                    {% if images.all.count > 0 %}
+                        <p class="text-center font-weight-bold bg-dark text-light mt-2 p-1">Current Images</p>
+                        <div id="current-images" class="row text-center images-container">
+                            {% for image in images %}
+                            <div class="col-12 col-sm-6 col-lg-4 image-preview" >
+                                <img src="{{ MEDIA_URL }}{{image.file_name}}"
+                                alt="{{product.name}}"
+                                class="mt-1 border border-light image-thumbnail" {% if image.default %}id="primary-image"{% endif %}
+                                data-file-name="{{image.file_name}}">
+                                <div class="remove-image remove-icon text-danger" data-image-id="{{image.id}}">
+                                    <i class="fa-sharp fa-regular fa-square-minus"></i><span> Remove</span>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    <div id="new-images">
+                        <p class="text-center mt-3 font-weight-bold bg-dark text-light p-1">New Images</p>
+                        <div id="image-selector" class="mb-2 row text-center images-container">
+                    </div>
+                        
+                    </div>
                     <div class="row">
+                        <div class="col-12">
+                            <strong>
+                                <p class="text-danger text-center" id="error-message"></p>
+                            </strong>
+                        </div>
                         <div class="col-6">
                             <a href="{% url 'product_details' product.id %}" class="btn btn-outline-dark rounded-0">Cancel</a>
                         </div>
@@ -39,6 +66,7 @@
                             <button type="submit" class="btn btn-info rounded-0">Update Product</button>
                         </div>
                     </div>
+                    <input type="hidden" name="primary-image-input" id="primary-image-input" value="">
                 </form>
             </div>
         </div>
@@ -47,5 +75,6 @@
 
 {% block postload_js %}
     {{ block.super }}
-    <script src="{% static 'products/js/imageUpdateText.js' %}"></script>
+    <script src="{% static 'products/js/imageSelector.js' %}"></script>
+    <script src="{% static 'products/js/handleRemoveImage.js' %}"></script>
 {% endblock postload_js %}

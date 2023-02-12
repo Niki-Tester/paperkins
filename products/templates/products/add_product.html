@@ -21,8 +21,8 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-12 col-md-8 offset-md-2 p-4 bg-white">
-                <form method="POST" action="" class="form mb-2" enctype="multipart/form-data">
+            <div  class="col-12 col-md-8 offset-md-2 p-4 bg-white">
+                <form id="product-form" method="POST" action="{% url 'add_product' %}" class="form mb-2" enctype="multipart/form-data">
                     {% csrf_token %}
                     {% for field in form %}
                         {% if field.name != 'image' %}
@@ -31,14 +31,24 @@
                             {{ field }}
                         {% endif %}
                     {% endfor %}
+                    <div id="new-images">
+                        <p class="text-center mt-3 font-weight-bold bg-dark text-light p-1">New Images</p>
+                        <div id="image-selector" class="mb-2 row text-center images-container"></div>
+                    </div>
                     <div class="row">
+                        <div class="col-12">
+                            <strong>
+                                <p class="text-danger text-center" id="error-message"></p>
+                            </strong>
+                        </div>
                         <div class="col-5">
                             <a class="btn btn-outline-danger rounded-0" href="{% url 'products' %}">Cancel</a>
                         </div>
                         <div class="col-7 text-right">
-                            <button class="btn btn-dark rounded-0" type="submit">Add Product</button>
+                            <button id="add-item-button" class="btn btn-dark rounded-0">Add Product</button>
                         </div>
                     </div>
+                    <input type="hidden" name="primary-image-input" id="primary-image-input" value="">
                 </form>
             </div>
         </div>
@@ -47,5 +57,5 @@
 
 {% block postload_js %}
     {{ block.super }}
-    <script src="{% static 'products/js/imageUpdateText.js' %}"></script>
+    <script src="{% static 'products/js/imageSelector.js' %}"></script>
 {% endblock postload_js %}

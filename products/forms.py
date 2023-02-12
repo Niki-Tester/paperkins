@@ -1,4 +1,5 @@
 from django import forms
+from multiupload.fields import MultiImageField
 from .widgets import CustomClearableFileInput
 from .models import Product, Category
 
@@ -9,7 +10,8 @@ class ProductForm(forms.ModelForm):
         fields = "__all__"
 
     image = forms.ImageField(
-        label="Image", required=False, widget=CustomClearableFileInput
+        widget=CustomClearableFileInput(attrs={"multiple": True}),
+        required=False,
     )
 
     def __init__(self, *args, **kwargs):
