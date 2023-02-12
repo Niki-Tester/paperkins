@@ -22,7 +22,7 @@
         </div>
         <div class="row">
             <div  class="col-12 col-md-8 offset-md-2 p-4 bg-white">
-                <form id="add-product-form" method="POST" action="/products/add/" class="form mb-2" enctype="multipart/form-data">
+                <form id="product-form" method="POST" action="{% url 'add_product' %}" class="form mb-2" enctype="multipart/form-data">
                     {% csrf_token %}
                     {% for field in form %}
                         {% if field.name != 'image' %}
@@ -31,8 +31,16 @@
                             {{ field }}
                         {% endif %}
                     {% endfor %}
-                    <div id="image-selector" class="row text-center">
+                    <div id="new-images">
+                        <p class="text-center mt-3 font-weight-bold bg-dark text-light p-1">New Images</p>
+                        <div id="image-selector" class="mb-2 row text-center images-container"></div>
+                    </div>
                     <div class="row">
+                        <div class="col-12">
+                            <strong>
+                                <p class="text-danger text-center" id="error-message"></p>
+                            </strong>
+                        </div>
                         <div class="col-5">
                             <a class="btn btn-outline-danger rounded-0" href="{% url 'products' %}">Cancel</a>
                         </div>

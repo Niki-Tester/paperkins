@@ -257,7 +257,7 @@ footer {
 	border-radius: 0;
 }
 
-#current-images {
+.images-container {
 	background-color: #fdfdfd;
 	padding-top: 1rem;
 	width: 100%;
@@ -265,9 +265,14 @@ footer {
 	border: 3px dotted darkgrey;
 }
 
+#new-images {
+	display: none;
+}
+
 .image-preview img {
 	border: #aab7c4 solid 3px !important;
 	width: 100%;
+	margin-bottom: 1rem;
 }
 
 .image-preview img:hover {

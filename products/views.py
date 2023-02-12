@@ -144,10 +144,48 @@ def update_product(request, product_id):
 
     if request.method == "POST":
         form = ProductForm(request.POST, request.FILES, instance=product)
+        primary_image_input = request.POST.get("primary-image-input")
+        new_images_to_save = request.FILES.getlist("image")
+        is_primary_image = False
+
         if form.is_valid():
             form.save()
-            messages.success(request, f"Successfully updated {product.name}!")
-            return redirect(reverse("product_details", args=[product.id]))
+
+            # Check if a primary exists.
+            try:
+                current_default_image = Image.objects.get(
+                    product=product, default=True
+                )
+            except Image.DoesNotExist:
+                current_default_image = None
+
+            if new_images_to_save:
+                for image in new_images_to_save:
+                    is_primary_image = image.name == primary_image_input
+                    Image.objects.create(
+                        product=product,
+                        file_name=image,
+                        default=is_primary_image,
+                    )
+
+            if primary_image_input and current_default_image is None:
+                new_default_image = Image.objects.get(
+                    product=product, file_name=primary_image_input
+                )
+
+                new_default_image.default = True
+                new_default_image.save()
+            elif primary_image_input and current_default_image:
+                current_default_image.default = False
+                current_default_image.save()
+
+                new_default_image = Image.objects.get(
+                    product=product, file_name=primary_image_input
+                )
+
+                new_default_image.default = True
+                new_default_image.save()
+
         else:
             messages.error(
                 request,
@@ -177,9 +215,6 @@ def remove_image(request):
 
     image_id = json.loads(request.body)["image_id"]
     image = get_object_or_404(Image, pk=image_id)
-
-    if image.default:
-        return HttpResponse(status=409)
 
     try:
         image.delete()
