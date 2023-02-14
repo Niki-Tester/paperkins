@@ -372,7 +372,7 @@ The aim behind this project is to demonstrate my skills in developing a Full Sta
 - Main Background image from [Unsplash.com](https://unsplash.com/)
   - Source: [KatieRainbow](https://unsplash.com/@katierainbow) | [Image](https://unsplash.com/photos/DjGHuzUh_84)
 
-- Product images a from [Paperkins.co.uk](https://paperkins.co.uk)
+- Product images are from [Paperkins.co.uk](https://paperkins.co.uk)
   - With permission from the site owner, and good friend Jess.
 
 ### Acknowledgements
@@ -382,4 +382,4 @@ The aim behind this project is to demonstrate my skills in developing a Full Sta
 - Tutor support at Code Institute for their support.
 
 # Link to deployed website:
-[Heroku - Paperkins](https://paperkins.herokuapp.com/)
+[Render - Paperkins](https://paperkins.onrender.com/)
