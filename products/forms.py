@@ -3,14 +3,13 @@ from multiupload.fields import MultiImageField
 from .widgets import CustomClearableFileInput
 from .models import Product, Category
 
-
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
         fields = "__all__"
 
     image = forms.ImageField(
-        widget=CustomClearableFileInput(attrs={"multiple": True}),
+        widget=CustomClearableFileInput(attrs={"allow_multiple_selected": True}),
         required=False,
     )
 
